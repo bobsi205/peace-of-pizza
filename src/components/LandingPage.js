@@ -12,7 +12,8 @@ export class LandingPage extends Component {
           style={{
             background: `url(${pizza1})`,
             backgroundPosition: "50% 50%",
-            backgroundSize: "cover"
+            backgroundSize: "cover",
+            marginBottom: "2px"
           }}
         >
           <Container className="text-white">
@@ -30,9 +31,9 @@ export class LandingPage extends Component {
         </Jumbotron>
         <div className="row">
           <div className="col-7 bg-black" style={{ hight: "100px" }}>
-            <img src={dealP}></img>
+            <img src={dealP} alt="2 pizzas + 2 toppings free"></img>
           </div>
-          <div className="col"></div>
+          <div className="col">make your own pizza</div>
         </div>
       </div>
     );
