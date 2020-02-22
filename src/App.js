@@ -3,7 +3,7 @@ import "./App.css";
 import Layout from "./components/Layout";
 import LandingPage from "./components/LandingPage";
 import { Route, Switch } from "react-router-dom";
-import Login from "./components/Login";
+import Login from "./components/login/Login";
 
 class App extends Component {
   render() {
