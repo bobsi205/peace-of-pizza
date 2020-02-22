@@ -7,7 +7,7 @@ class Layout extends Component {
     return (
       <div>
         <Navbar />
-        <div className="container">{this.props.children}</div>
+        <div>{this.props.children}</div>
         <Footer />
       </div>
     );

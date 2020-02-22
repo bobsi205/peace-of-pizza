@@ -4,7 +4,7 @@ import { Nav, Navbar } from "react-bootstrap";
 export class navbar extends Component {
   render() {
     return (
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="light" variant="light">
         <Navbar.Brand href="/">Peace Of Pizza</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
