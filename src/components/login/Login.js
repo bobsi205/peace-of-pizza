@@ -1,6 +1,6 @@
-import Form from "./Form";
 import React, { Component } from "react";
 import Register from "./Register";
+import { Form, Button } from "react-bootstrap";
 
 export class App extends Component {
   state = {
@@ -71,10 +71,35 @@ export class App extends Component {
   render() {
     return this.state.register ? (
       <div>
-        <Form
-          loginValidation={this.loginValidation}
-          startRegister={this.startRegister}
-        />
+        <Form onSubmit={e => this.loginValidation(e)}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" name="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">{this.msgEmail}</Form.Text>
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+            <p>{this.msgPassword}</p>
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+          <Button
+            variant="primary"
+            type="button"
+            onClick={() => this.startRegister(false)}
+          >
+            Register
+          </Button>
+          <p>{this.loggedIn ? "logged In" : ""}</p>
+        </Form>
         <p>{this.state.loggedIn ? "logged In" : ""}</p>
         <p>{this.msgPassword}</p>
         <p>{this.msgEmail}</p>

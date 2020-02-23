@@ -1,33 +1,33 @@
 import React from "react";
+import { Form, Button } from "react-bootstrap";
 
 const form = props => {
   return (
-    <form onSubmit={e => props.loginValidation(e)}>
-      <input
-        className="field"
-        type="text"
-        placeholder="email"
-        name="email"
-      ></input>
-      <p>{props.msgEmail}</p>
+    <Form onSubmit={e => props.loginValidation(e)}>
+      <Form.Group controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" name="email" placeholder="Enter email" />
+        <Form.Text className="text-muted">{props.msgEmail}</Form.Text>
+      </Form.Group>
 
-      <input
-        className="field"
-        type="text"
-        placeholder="password"
-        name="password"
-      ></input>
-      <p>{props.msgPassword}</p>
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" name="password" placeholder="Password" />
+        <p>{props.msgPassword}</p>
+      </Form.Group>
 
-      <input className="button" type="submit" value="Submit"></input>
-      <input
-        className="button"
-        onClick={() => props.startRegister(false)}
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+      <Button
+        variant="primary"
         type="button"
-        value="register"
-      ></input>
+        onClick={() => props.startRegister(false)}
+      >
+        Register
+      </Button>
       <p>{props.loggedIn ? "logged In" : ""}</p>
-    </form>
+    </Form>
   );
 };
 
