@@ -21,7 +21,11 @@ export class App extends Component {
     };
     var user = this.state.DB.find(ele => ele.email === item.email);
 
-    if (user !== undefined) {
+    if (
+      user !== undefined &&
+      item.password !== undefined &&
+      item.email !== undefined
+    ) {
       if (user.password === item.password) {
         this.setState({ loggedIn: true });
         this.setState({ msgEmail: "" });
