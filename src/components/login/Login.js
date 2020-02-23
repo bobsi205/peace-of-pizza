@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Register from "./Register";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
+import "../../App.css";
 
 export class App extends Component {
   state = {
@@ -74,15 +75,21 @@ export class App extends Component {
 
   render() {
     return this.state.register ? (
-      <div>
-        <Form onSubmit={e => this.loginValidation(e)}>
-          <Form.Group controlId="formBasicEmail">
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "500px" }}
+      >
+        <Form
+          className="d-flex justify-content-center align-items-center flex-column"
+          onSubmit={e => this.loginValidation(e)}
+        >
+          <Form.Group controlId="formBasicEmail" className="formInput">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" name="email" placeholder="Enter email" />
             <Form.Text className="text-muted">{this.msgEmail}</Form.Text>
           </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group controlId="formBasicPassword" className="formInput">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
@@ -92,10 +99,11 @@ export class App extends Component {
             <p>{this.msgPassword}</p>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="formInput">
             Submit
           </Button>
           <Button
+            className="formInput"
             variant="primary"
             type="button"
             onClick={() => this.startRegister(false)}
