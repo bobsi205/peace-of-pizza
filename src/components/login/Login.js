@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Register from "./Register";
 import { Form, Button, Container } from "react-bootstrap";
 import "../../App.css";
+import { withRouter } from "react-router-dom";
 
-export class App extends Component {
+export class Login extends Component {
   state = {
     email: "",
     password: "",
@@ -42,7 +43,9 @@ export class App extends Component {
   };
 
   startRegister = val => {
-    this.setState({ register: val });
+    this.props.history.push({
+      pathname: `/register`
+    });
   };
 
   userCreation = e => {
@@ -99,12 +102,12 @@ export class App extends Component {
             <p>{this.msgPassword}</p>
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="formInput">
+          <Button variant="secondary" type="submit" className="formInput">
             Submit
           </Button>
           <Button
             className="formInput"
-            variant="primary"
+            variant="success"
             type="button"
             onClick={() => this.startRegister(false)}
           >
@@ -122,4 +125,4 @@ export class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(Login);
