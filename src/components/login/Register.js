@@ -11,7 +11,6 @@ export class Register extends Component {
 
   submitHandler = e => {
     console.log("here");
-    e.preventDefault();
     console.log("here");
   };
 
@@ -56,9 +55,9 @@ export class Register extends Component {
           </Form.Group>
           <Button
             variant="success"
-            type="submit"
+            type="button"
             className="formInput"
-            onSubmit={e => this.submitHandler(e)}
+            onClick={e => this.submitHandler(e)}
           >
             Submit
           </Button>
