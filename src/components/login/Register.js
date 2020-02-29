@@ -42,8 +42,22 @@ export class Register extends Component {
   };
 
   submitHandler = e => {
-    console.log("here");
+    this.usernameValidation();
     this.emailValidation();
+  };
+
+  
+
+  usernameValidation = e => {
+    var tempState = this.state.formErrors;
+    if (
+      /^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(
+        this.state.form.username
+      )
+    )
+      tempState.username = "";
+    else tempState.username = "wrong username";
+    this.setState({ formErrors: tempState });
   };
 
   emailValidation = e => {
