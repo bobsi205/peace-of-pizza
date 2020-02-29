@@ -44,9 +44,43 @@ export class Register extends Component {
   submitHandler = e => {
     this.usernameValidation();
     this.emailValidation();
+    this.passwordValidation();
+    if (
+      this.state.formErrors.email === "" &&
+      this.state.formErrors.username === "" &&
+      this.state.formErrors.password === ""
+    ) {
+      this.registerData();
+      this.props.history.push({
+        pathname: `/login`
+      });
+    }
   };
 
-  
+  registerData = () => {
+    var users = JSON.parse(localStorage.getItem("usersArr"));
+    users.push({
+      username: this.state.form.username,
+      email: this.state.form.email,
+      password: this.state.form.password
+    });
+    localStorage.setItem("usersArr", JSON.stringify(users));
+  };
+
+  passwordValidation = () => {
+    var tempState = this.state.formErrors;
+
+    if (
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,20}$/.test(
+        this.state.form.password
+      )
+    ) {
+      if (this.state.form.password === this.state.form.conPassword)
+        tempState.password = "";
+      else tempState.password = "passwords does not match";
+    } else tempState.password = "password does not meet requirments";
+    this.setState({ formErrors: tempState });
+  };
 
   usernameValidation = e => {
     var tempState = this.state.formErrors;
