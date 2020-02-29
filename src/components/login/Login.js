@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Register from "./Register";
 import { Form, Button } from "react-bootstrap";
 import "../../App.css";
 import { withRouter } from "react-router-dom";
+import { MyContext } from "../../context/MyContext";
 
 const Login = props => {
   const [email, setEmail] = useState("");
@@ -12,7 +13,8 @@ const Login = props => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [register, setRegister] = useState(true);
   const [DB, setDB] = useState({});
-
+  const myData = useContext(MyContext);
+  console.log(myData);
   const loginValidation = e => {
     e.preventDefault();
     var item = {
