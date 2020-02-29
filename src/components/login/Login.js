@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Register from "./Register";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import "../../App.css";
 import { withRouter } from "react-router-dom";
 
