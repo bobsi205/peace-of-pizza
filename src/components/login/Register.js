@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
-import FormComp from "./Form";
 
 export class Register extends Component {
   state = {
