@@ -1,23 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
-import Layout from "./components/Layout";
 import LandingPage from "./components/LandingPage";
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/login/Login";
 import Register from "./components/login/Register";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-class App extends Component {
-  render() {
-    const route = (
+const App = () => {
+  return (
+    <>
+      <Navbar />
       <Switch>
         <Route exact path={"/"} component={() => <LandingPage />} />
         <Route path={"/login"} component={() => <Login />} />
         <Route path={"/register"} component={() => <Register />} />
       </Switch>
-    );
-
-    return <Layout>{route}</Layout>;
-  }
-}
+      <Footer />
+    </>
+  );
+};
 
 export default App;

@@ -1,191 +1,153 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
-export class Register extends Component {
-  state = {
-    formGroup: [
-      {
-        controlId: "formBasicEmail",
-        className: "formInput",
-        label: "Username",
-        type: "text",
-        as: "input",
-        name: "username",
-        placeholder: "Username"
-      }
-    ],
-    form: {
-      username: "",
-      email: "",
-      password: "",
-      conPassword: ""
-    },
-    formErrors: {
-      username: "",
-      email: "",
-      password: "",
-      conPassword: ""
-    }
-  };
-  gotoLogin = () => {
-    this.props.history.push({
+const Register = props => {
+  // const [formGroup, setFormGroup] = useState({
+  //   controlId: "formBasicEmail",
+  //   className: "formInput",
+  //   label: "Username",
+  //   type: "text",
+  //   as: "input",
+  //   name: "username",
+  //   placeholder: "Username"
+  // });
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [conPassword, setConPassword] = useState("");
+  const [errUsername, setErrUsername] = useState("");
+  const [errEmail, setErrEmail] = useState("");
+  const [errPassword, setErrPassword] = useState("");
+
+  const gotoLogin = () => {
+    props.history.push({
       pathname: `/login`
     });
   };
 
-  changeHandler = e => {
-    var tempState = this.state.form;
-    tempState[e.target.name] = e.target.value;
-    this.setState({ form: tempState });
-  };
-
-  submitHandler = e => {
-    this.usernameValidation();
-    this.emailValidation();
-    this.passwordValidation();
-    if (
-      this.state.formErrors.email === "" &&
-      this.state.formErrors.username === "" &&
-      this.state.formErrors.password === ""
-    ) {
-      this.registerData();
-      this.props.history.push({
+  const submitHandler = e => {
+    usernameValidation();
+    emailValidation();
+    passwordValidation();
+    if (errEmail === "" && errUsername === "" && errPassword === "") {
+      // if (DB.find(ele => ele.email === userInput.email) !== undefined) {
+      //   //check if email exsist
+      // }
+      registerData();
+      props.history.push({
         pathname: `/login`
       });
     }
   };
 
-  registerData = () => {
+  const registerData = () => {
     var users = JSON.parse(localStorage.getItem("usersArr"));
     users.push({
-      username: this.state.form.username,
-      email: this.state.form.email,
-      password: this.state.form.password
+      username: username,
+      email: email,
+      password: password
     });
     localStorage.setItem("usersArr", JSON.stringify(users));
   };
 
-  passwordValidation = () => {
-    var tempState = this.state.formErrors;
-
-    if (
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,20}$/.test(
-        this.state.form.password
-      )
-    ) {
-      if (this.state.form.password === this.state.form.conPassword)
-        tempState.password = "";
-      else tempState.password = "passwords does not match";
-    } else tempState.password = "password does not meet requirments";
-    this.setState({ formErrors: tempState });
+  const passwordValidation = () => {
+    if (/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,20}$/.test(password)) {
+      if (password === conPassword) setErrPassword("");
+      else setErrPassword("passwords does not match");
+    } else setErrPassword("password does not meet requirments");
   };
 
-  usernameValidation = e => {
-    var tempState = this.state.formErrors;
+  const usernameValidation = e => {
     if (
       /^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(
-        this.state.form.username
+        username
       )
     )
-      tempState.username = "";
-    else tempState.username = "wrong username";
-    this.setState({ formErrors: tempState });
+      setErrUsername("");
+    else setErrUsername("wrong username");
   };
 
-  emailValidation = e => {
-    var tempState = this.state.formErrors;
-    if (
-      /^[a-zA-Z0-9.]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(this.state.form.email)
-    )
-      tempState.email = "";
-    else tempState.email = "wrong email";
-    this.setState({ formErrors: tempState });
+  const emailValidation = e => {
+    if (/^[a-zA-Z0-9.]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email))
+      setErrEmail("");
+    else setErrEmail("wrong email");
   };
-  render() {
-    return (
-      <div
-        className="d-flex justify-content-center align-items-center flex-column"
-        style={{ height: "500px", marginBottom: "20px" }}
-      >
-        <h2 className="mt-5">Registration</h2>
-        <Form className="d-flex justify-content-center align-items-center flex-column mb-5">
-          <Form.Group controlId="formBasicEmail" className="formInput">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              as="input"
-              name="username"
-              placeholder="Username"
-              value={this.state.form.username}
-              onChange={e => this.changeHandler(e)}
-              required
-            />
-            <Form.Text className="text-muted">
-              {this.state.formErrors.username}
-            </Form.Text>
-          </Form.Group>
+  return (
+    <div
+      className="d-flex justify-content-center align-items-center flex-column"
+      style={{ height: "500px", marginBottom: "20px" }}
+    >
+      <h2 className="mt-5">Registration</h2>
+      <Form className="d-flex justify-content-center align-items-center flex-column mb-5">
+        <Form.Group controlId="formBasicEmail" className="formInput">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            as="input"
+            name="username"
+            placeholder="Username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            required
+          />
+          <Form.Text className="text-muted">{errUsername}</Form.Text>
+        </Form.Group>
 
-          <Form.Group controlId="formBasicEmail" className="formInput">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={this.state.form.email}
-              onChange={e => this.changeHandler(e)}
-            />
-            <Form.Text className="text-muted">
-              {this.state.formErrors.email}
-            </Form.Text>
-          </Form.Group>
+        <Form.Group controlId="formBasicEmail" className="formInput">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <Form.Text className="text-muted">{errEmail}</Form.Text>
+        </Form.Group>
 
-          <Form.Group controlId="formBasicPassword" className="formInput">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.form.password}
-              onChange={e => this.changeHandler(e)}
-            />
-            <Form.Text className="text-muted">
-              {this.state.formErrors.password}
-            </Form.Text>
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword" className="formInput">
-            <Form.Label>Confirm password</Form.Label>
-            <Form.Control
-              type="password"
-              name="conPassword"
-              placeholder="Confirm Password"
-              value={this.state.form.conPassword}
-              onChange={e => this.changeHandler(e)}
-            />
-            <Form.Text className="text-muted">
-              {this.state.formErrors.conPassword}
-            </Form.Text>
-          </Form.Group>
-          <Button
-            variant="success"
-            type="button"
-            className="formInput"
-            onClick={e => this.submitHandler(e)}
-          >
-            Submit
-          </Button>
-          <Button
-            className="formInput"
-            variant="secondary"
-            type="button"
-            onClick={() => this.gotoLogin()}
-          >
-            Login
-          </Button>
-        </Form>
-      </div>
-    );
-  }
-}
+        <Form.Group controlId="formBasicPassword" className="formInput">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          <Form.Text className="text-muted">{errPassword}</Form.Text>
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword" className="formInput">
+          <Form.Label>Confirm password</Form.Label>
+          <Form.Control
+            type="password"
+            name="conPassword"
+            placeholder="Confirm Password"
+            value={conPassword}
+            onChange={e => setConPassword(e.target.value)}
+          />
+          <Form.Text className="text-muted">{errPassword}</Form.Text>
+        </Form.Group>
+        <Button
+          variant="success"
+          type="button"
+          className="formInput"
+          onClick={e => submitHandler(e)}
+        >
+          Submit
+        </Button>
+        <Button
+          className="formInput"
+          variant="secondary"
+          type="button"
+          onClick={() => gotoLogin()}
+        >
+          Login
+        </Button>
+      </Form>
+    </div>
+  );
+};
 
 export default withRouter(Register);
