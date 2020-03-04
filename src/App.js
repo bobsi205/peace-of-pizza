@@ -6,7 +6,7 @@ import Login from "./components/login/Login";
 import Register from "./components/login/Register";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import Builder from "./components/PizzaBuilder";
 const App = () => {
   return (
     <>
@@ -15,6 +15,7 @@ const App = () => {
         <Route exact path={"/"} component={() => <LandingPage />} />
         <Route path={"/login"} component={() => <Login />} />
         <Route path={"/register"} component={() => <Register />} />
+        <Route path={"/order"} component={() => <Builder />} />
       </Switch>
       <Footer />
     </>
