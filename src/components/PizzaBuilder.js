@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import Paparoni from "../images/toppings/temp.png";
 import Pizza from "../images/Pizza2.0.png";
+
 const PizzaBuilder = props => {
   //{rx,ry,topping,sx}
   const [Toppings, setToppings] = React.useState([]);
@@ -15,6 +16,8 @@ const PizzaBuilder = props => {
     const canvas = canvasRef.current;
     const loc = canvas.getBoundingClientRect();
     const ctx = canvas.getContext("2d");
+    ctx.drawImage(pizzaImg, 0, 0, canvas.width, canvas.height);
+
     console.log(Toppings, canvas.getBoundingClientRect());
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(pizzaImg, 0, 0, canvas.width, canvas.height);
@@ -25,8 +28,8 @@ const PizzaBuilder = props => {
         0,
         50,
         50,
-        location.x - loc.left,
-        location.y - loc.top,
+        location.x,
+        location.y,
         50,
         50
       )
@@ -52,9 +55,11 @@ const PizzaBuilder = props => {
           width={500}
           height={500}
           onClick={e => {
+            const canvas = canvasRef.current;
+            const loc = canvas.getBoundingClientRect();
             const newLocation = {
-              x: e.clientX - 25,
-              y: e.clientY - 25,
+              x: e.clientX - 25 - loc.left,
+              y: e.clientY - 25 - loc.top,
               part: Math.floor(Math.random() * Math.floor(5)) * 50
             };
             setToppings([...Toppings, newLocation]);
