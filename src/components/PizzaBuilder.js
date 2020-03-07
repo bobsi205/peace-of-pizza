@@ -1,41 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import Paparoni from "../images/toppings/temp.png";
-import Pizza from "../images/Pizza2.0.png";
+import Canvas from "./PizaaCanvas";
 
 const PizzaBuilder = props => {
-  //{rx,ry,topping,sx}
-  const [Toppings, setToppings] = React.useState([]);
-  const canvasRef = React.useRef(null);
-  var imageObj1 = new Image();
-  var pizzaImg = new Image();
-  imageObj1.src = Paparoni;
-  pizzaImg.src = Pizza;
-
-  React.useEffect(() => {
-    const canvas = canvasRef.current;
-    const loc = canvas.getBoundingClientRect();
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(pizzaImg, 0, 0, canvas.width, canvas.height);
-
-    console.log(Toppings, canvas.getBoundingClientRect());
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(pizzaImg, 0, 0, canvas.width, canvas.height);
-    Toppings.forEach(location =>
-      ctx.drawImage(
-        imageObj1,
-        location.part,
-        0,
-        50,
-        50,
-        location.x,
-        location.y,
-        50,
-        50
-      )
-    );
-  });
-
   return (
     <>
       <h2>Pizza Builder</h2>
@@ -49,22 +16,7 @@ const PizzaBuilder = props => {
           <Button> peperoni </Button>
           <Button> peperoni </Button>
         </div>
-        <canvas
-          style={{ backgroundImage: "url(../images/Pizza2.0.png)" }}
-          ref={canvasRef}
-          width={500}
-          height={500}
-          onClick={e => {
-            const canvas = canvasRef.current;
-            const loc = canvas.getBoundingClientRect();
-            const newLocation = {
-              x: e.clientX - 25 - loc.left,
-              y: e.clientY - 25 - loc.top,
-              part: Math.floor(Math.random() * Math.floor(5)) * 50
-            };
-            setToppings([...Toppings, newLocation]);
-          }}
-        />
+        <Canvas />
       </div>
     </>
   );
