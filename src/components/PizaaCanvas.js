@@ -1,4 +1,5 @@
 import React from "react";
+//toppings
 import imgPepperoni from "../images/toppings/pepperoni.png";
 import imgArtichoke from "../images/toppings/artichoke.png";
 import imgBabyMozzarella from "../images/toppings/babyMozzarella.png";
@@ -16,7 +17,7 @@ import imgJalapeno from "../images/toppings/jalapeno.png";
 import imgMushrooms from "../images/toppings/mushrooms.png";
 import imgSheepCheese from "../images/toppings/sheepCheese.png";
 import imgTomato from "../images/toppings/tomato.png";
-
+//pizza
 import Pizza from "../images/Pizza2.0.png";
 
 const PizaaCanvas = () => {
@@ -24,6 +25,9 @@ const PizaaCanvas = () => {
   const [ToppingsLoc, setToppingsLoc] = React.useState([]);
   const canvasRef = React.useRef(null);
   var pizzaImg = new Image();
+  pizzaImg.src = Pizza;
+
+  //toppings inialization
   var toppings = {
     pepperoni: new Image(),
     artichoke: new Image(),
@@ -61,15 +65,9 @@ const PizaaCanvas = () => {
   toppings.sheepCheese.src = imgSheepCheese;
   toppings.tomato.src = imgTomato;
 
-  pizzaImg.src = Pizza;
-
   React.useEffect(() => {
     const canvas = canvasRef.current;
-    const loc = canvas.getBoundingClientRect();
     const ctx = canvas.getContext("2d");
-    ctx.drawImage(pizzaImg, 0, 0, canvas.width, canvas.height);
-
-    console.log(ToppingsLoc, canvas.getBoundingClientRect());
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(pizzaImg, 0, 0, canvas.width, canvas.height);
     ToppingsLoc.forEach(location =>
@@ -95,13 +93,23 @@ const PizaaCanvas = () => {
         height={400}
         onClick={e => {
           const canvas = canvasRef.current;
-          const loc = canvas.getBoundingClientRect();
-          const newLocation = {
-            x: e.clientX - 25 - loc.left,
-            y: e.clientY - 25 - loc.top,
-            part: Math.floor(Math.random() * Math.floor(5)) * 50
-          };
-          setToppingsLoc([...ToppingsLoc, newLocation]);
+          const canvasBound = canvas.getBoundingClientRect();
+
+          if (
+            Math.sqrt(
+              Math.pow(e.clientX - canvasBound.left - canvas.width / 2, 2) +
+                Math.pow(e.clientY - canvasBound.top - canvas.height / 2, 2)
+            ) < 130
+          ) {
+            const newLocation = {
+              x: e.clientX - 25 - canvasBound.left,
+              y: e.clientY - 25 - canvasBound.top,
+              part: Math.floor(Math.random() * Math.floor(5)) * 50
+            };
+            setToppingsLoc([...ToppingsLoc, newLocation]);
+          } else {
+            console.log("outside the pizza");
+          }
         }}
       />
     </div>
