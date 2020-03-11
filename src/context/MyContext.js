@@ -47,9 +47,6 @@ const MyContextProvider = props => {
         "Mushrooms",
         "Tomato"
       ]
-    },
-    updateTopp: topping => {
-      myData.pizzas[0].toppingCount[topping]++;
     }
   });
 

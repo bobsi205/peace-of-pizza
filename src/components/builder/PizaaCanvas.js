@@ -24,7 +24,7 @@ import imgTomato from "../../images/toppings/tomato.png";
 import Pizza from "../../images/Pizza2.0.png";
 
 const PizaaCanvas = props => {
-  const [myData] = useContext(MyContext);
+  const [myData, setMyData] = useContext(MyContext);
   console.log(myData);
   const [currTop, setCurrTop] = useState();
   var pizzaImg = new Image();
@@ -161,10 +161,11 @@ const PizaaCanvas = props => {
               topping: toppingsImg[currTop]
             };
             console.log(currTop, myData.pizzas[0].toppingCount[currTop]);
+            let tempData = { ...myData };
+            tempData.pizzas[0].toppings.push(newLocation);
+            tempData.pizzas[0].toppingCount[currTop]++;
+            setMyData(tempData);
 
-            myData.pizzas[0].toppings.push(newLocation);
-            // myData.pizzas[0].toppingCount[currTop]++;
-            myData.updateTopp(currTop);
             updateCanvas();
           } else {
             console.log("outside the pizza");
