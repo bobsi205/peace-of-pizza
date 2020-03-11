@@ -16,6 +16,7 @@ const App = () => {
         <Route path={"/login"} component={() => <Login />} />
         <Route path={"/register"} component={() => <Register />} />
         <Route path={"/order"} component={() => <Builder />} />
+        {/* <Route path={"/summary"} component={()=>}/> */}
       </Switch>
       <Footer />
     </>
