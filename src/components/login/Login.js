@@ -13,8 +13,10 @@ const Login = props => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [register, setRegister] = useState(true);
   const [DB, setDB] = useState({});
+  
   const myData = useContext(MyContext);
   console.log(myData);
+
   const loginValidation = e => {
     e.preventDefault();
     var item = {

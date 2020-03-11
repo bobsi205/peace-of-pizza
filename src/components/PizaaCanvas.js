@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { Button } from "react-bootstrap";
+import { MyContext } from "../context/MyContext";
 
 //toppings
 import imgPepperoni from "../images/toppings/pepperoni.png";
@@ -23,14 +24,16 @@ import imgTomato from "../images/toppings/tomato.png";
 import Pizza from "../images/Pizza2.0.png";
 
 const PizaaCanvas = props => {
-  const [currTop, setCurrTop] = useState([]);
-  const [toppingsLoc, setToppingsLoc] = useState([]);
-  const canvasRef = useRef(null);
+  const [myData, setMyData] = useContext(MyContext);
+  console.log(myData);
+  const [currTop, setCurrTop] = useState();
   var pizzaImg = new Image();
   pizzaImg.src = Pizza;
 
+  const canvasRef = useRef(null);
+
   //toppings inialization
-  var toppings = {
+  var toppingsImg = {
     pepperoni: new Image(),
     artichoke: new Image(),
     babyMozzarella: new Image(),
@@ -49,31 +52,47 @@ const PizaaCanvas = props => {
     sheepCheese: new Image(),
     tomato: new Image()
   };
-  toppings.pepperoni.src = imgPepperoni;
-  toppings.artichoke.src = imgArtichoke;
-  toppings.babyMozzarella.src = imgBabyMozzarella;
-  toppings.beef.src = imgBeef;
-  toppings.bellPepers.src = imgBellPepers;
-  toppings.bOlives.src = imgBOlives;
-  toppings.broccoli.src = imgBroccoli;
-  toppings.bulgarianCheese.src = imgBulgarianCheese;
-  toppings.cabanos.src = imgCabanos;
-  toppings.corn.src = imgCorn;
-  toppings.extraCheese.src = imgExtraCheese;
-  toppings.garlic.src = imgGarlic;
-  toppings.gOlives.src = imgGOlives;
-  toppings.jalapeno.src = imgJalapeno;
-  toppings.mushrooms.src = imgMushrooms;
-  toppings.sheepCheese.src = imgSheepCheese;
-  toppings.tomato.src = imgTomato;
-
+  toppingsImg.pepperoni.src = imgPepperoni;
+  toppingsImg.artichoke.src = imgArtichoke;
+  toppingsImg.babyMozzarella.src = imgBabyMozzarella;
+  toppingsImg.beef.src = imgBeef;
+  toppingsImg.bellPepers.src = imgBellPepers;
+  toppingsImg.bOlives.src = imgBOlives;
+  toppingsImg.broccoli.src = imgBroccoli;
+  toppingsImg.bulgarianCheese.src = imgBulgarianCheese;
+  toppingsImg.cabanos.src = imgCabanos;
+  toppingsImg.corn.src = imgCorn;
+  toppingsImg.extraCheese.src = imgExtraCheese;
+  toppingsImg.garlic.src = imgGarlic;
+  toppingsImg.gOlives.src = imgGOlives;
+  toppingsImg.jalapeno.src = imgJalapeno;
+  toppingsImg.mushrooms.src = imgMushrooms;
+  toppingsImg.sheepCheese.src = imgSheepCheese;
+  toppingsImg.tomato.src = imgTomato;
+  // let img;
+  // const images = require.context("../images/toppings/", true);
+  // for (let [key, value] of Object.entries(toppings)) {
+  //   console.log(`${key}: ${value}`);
+  //   img = { ...img, [key]: images("./" + key + ".png") };
+  // }
+  // let img = { ...img, babyMozzarella: images("./" + "babyMozzarella.png") };
+  const undo = () => {
+    if (myData.pizzas[0].toppings.length > 0) {
+      myData.pizzas[0].toppings.pop();
+      updateCanvas();
+    } else console.log("there are no toppings");
+  };
   useEffect(() => {
-    console.log(currTop);
+    updateCanvas();
+  });
+
+  const updateCanvas = () => {
+    console.log(myData.pizzas);
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(pizzaImg, 0, 0, canvas.width, canvas.height);
-    toppingsLoc.forEach(location =>
+    myData.pizzas[0].toppings.forEach(location =>
       ctx.drawImage(
         location.topping,
         location.part,
@@ -86,22 +105,69 @@ const PizaaCanvas = props => {
         50
       )
     );
-  });
+  };
+
   return (
     <>
       <div className="d-flex align-content-center justify-content-center flex-column">
-        <Button onClick={() => setCurrTop("artichoke")}>artichoke</Button>
-        <Button onClick={() => setCurrTop("babyMozzarella")}>
+        <h2>Meats</h2>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("pepperoni")}
+        >
+          Pepperoni
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("beef")}
+        >
+          Beef
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("cabanos")}
+        >
+          Cabanos
+        </Button>
+
+        <h2>Cheeses</h2>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("babyMozzarella")}
+        >
           baby muzzarella
         </Button>
-        <Button onClick={() => setCurrTop("pepperoni")}> Pepperoni </Button>
-        <Button> peperoni </Button>
-        <Button> peperoni </Button>
-        <Button> peperoni </Button>
-        <Button> peperoni </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("bulgarianCheese")}
+        >
+          Bulgarian Cheese
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("extraCheese")}
+        >
+          Extra Cheese
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("sheepCheese")}
+        >
+          Sheep Cheese
+        </Button>
       </div>
       <canvas
-        style={{ backgroundImage: "url(../images/Pizza2.0.png)" }}
+        style={{
+          height: 400,
+          width: 400
+        }}
         ref={canvasRef}
         width={400}
         height={400}
@@ -109,7 +175,9 @@ const PizaaCanvas = props => {
           const canvas = canvasRef.current;
           const canvasBound = canvas.getBoundingClientRect();
 
-          if (
+          if (currTop === undefined) {
+            console.log("choose a topping");
+          } else if (
             Math.sqrt(
               Math.pow(e.clientX - canvasBound.left - canvas.width / 2, 2) +
                 Math.pow(e.clientY - canvasBound.top - canvas.height / 2, 2)
@@ -119,14 +187,96 @@ const PizaaCanvas = props => {
               x: e.clientX - 25 - canvasBound.left,
               y: e.clientY - 25 - canvasBound.top,
               part: Math.floor(Math.random() * Math.floor(5)) * 50,
-              topping: toppings[currTop]
+              topping: toppingsImg[currTop]
             };
-            setToppingsLoc([...toppingsLoc, newLocation]);
+            myData.pizzas[0].toppings.push(newLocation);
+            updateCanvas();
           } else {
             console.log("outside the pizza");
           }
         }}
       />
+      <div className="d-flex align-content-center justify-content-center flex-column">
+        <h2>Vegetables</h2>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("artichoke")}
+        >
+          artichoke
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("bOlives")}
+        >
+          Black Olives
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("gOlives")}
+        >
+          Green Olives
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("broccoli")}
+        >
+          Broccoli
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("corn")}
+        >
+          Corn
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("garlic")}
+        >
+          Garlic
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("jalapeno")}
+        >
+          Jalapenos
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("mushrooms")}
+        >
+          Mushrooms
+        </Button>
+        <Button
+          variant="light"
+          className="toppingBtnGrp"
+          onClick={() => setCurrTop("tomato")}
+        >
+          Tomato
+        </Button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <Button
+            variant="light"
+            className="btn-secondary"
+            onClick={() => setCurrTop("tomato")}
+          >
+            Tomato
+          </Button>
+          <Button variant="light" className="btn-secondary toppingCount">
+            7
+          </Button>
+        </div>
+      </div>
+      <div>
+        <Button onClick={() => undo()}>UNDO</Button>
+      </div>
     </>
   );
 };

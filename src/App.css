@@ -1,6 +1,10 @@
 .formInput {
   width: 35vw;
 }
-button {
+.toppingBtnGrp {
   margin: 5px !important;
+}
+
+.toppingCount{
+  
 }

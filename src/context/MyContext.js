@@ -1,10 +1,21 @@
 import React, { createContext, useState } from "react";
 export const MyContext = createContext();
 const MyContextProvider = props => {
-  const [myData] = useState({ loggedIn: false });
+  const [myData, setMyData] = useState({
+    loggedIn: false,
+    currentUser: {},
+    pizzas: [
+      {
+        id: 0,
+        toppings: []
+      }
+    ]
+  });
 
   return (
-    <MyContext.Provider value={{ myData }}>{props.children}</MyContext.Provider>
+    <MyContext.Provider value={[myData, setMyData]}>
+      {props.children}
+    </MyContext.Provider>
   );
 };
 
