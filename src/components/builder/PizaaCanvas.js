@@ -1,27 +1,27 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { Button } from "react-bootstrap";
-import { MyContext } from "../context/MyContext";
+import { MyContext } from "../../context/MyContext";
 
 //toppings
-import imgPepperoni from "../images/toppings/pepperoni.png";
-import imgArtichoke from "../images/toppings/artichoke.png";
-import imgBabyMozzarella from "../images/toppings/babyMozzarella.png";
-import imgBeef from "../images/toppings/beef.png";
-import imgBellPepers from "../images/toppings/bellPepers.png";
-import imgBOlives from "../images/toppings/bOlives.png";
-import imgBroccoli from "../images/toppings/broccoli.png";
-import imgBulgarianCheese from "../images/toppings/bulgarianCheese.png";
-import imgCabanos from "../images/toppings/cabanos.png";
-import imgCorn from "../images/toppings/corn.png";
-import imgExtraCheese from "../images/toppings/extraCheese.png";
-import imgGarlic from "../images/toppings/garlic.png";
-import imgGOlives from "../images/toppings/gOlives.png";
-import imgJalapeno from "../images/toppings/jalapeno.png";
-import imgMushrooms from "../images/toppings/mushrooms.png";
-import imgSheepCheese from "../images/toppings/sheepCheese.png";
-import imgTomato from "../images/toppings/tomato.png";
+import imgPepperoni from "../../images/toppings/pepperoni.png";
+import imgArtichoke from "../../images/toppings/artichoke.png";
+import imgBabyMozzarella from "../../images/toppings/babyMozzarella.png";
+import imgBeef from "../../images/toppings/beef.png";
+import imgBellPepers from "../../images/toppings/bellPepers.png";
+import imgBOlives from "../../images/toppings/bOlives.png";
+import imgBroccoli from "../../images/toppings/broccoli.png";
+import imgBulgarianCheese from "../../images/toppings/bulgarianCheese.png";
+import imgCabanos from "../../images/toppings/cabanos.png";
+import imgCorn from "../../images/toppings/corn.png";
+import imgExtraCheese from "../../images/toppings/extraCheese.png";
+import imgGarlic from "../../images/toppings/garlic.png";
+import imgGOlives from "../../images/toppings/gOlives.png";
+import imgJalapeno from "../../images/toppings/jalapeno.png";
+import imgMushrooms from "../../images/toppings/mushrooms.png";
+import imgSheepCheese from "../../images/toppings/sheepCheese.png";
+import imgTomato from "../../images/toppings/tomato.png";
 //pizza
-import Pizza from "../images/Pizza2.0.png";
+import Pizza from "../../images/Pizza2.0.png";
 
 const PizaaCanvas = props => {
   const [myData, setMyData] = useContext(MyContext);
@@ -70,7 +70,7 @@ const PizaaCanvas = props => {
   toppingsImg.sheepCheese.src = imgSheepCheese;
   toppingsImg.tomato.src = imgTomato;
   // let img;
-  // const images = require.context("../images/toppings/", true);
+  // const images = require.context("../../images/toppings/", true);
   // for (let [key, value] of Object.entries(toppings)) {
   //   console.log(`${key}: ${value}`);
   //   img = { ...img, [key]: images("./" + key + ".png") };

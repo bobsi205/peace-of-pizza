@@ -6,7 +6,7 @@ import Login from "./components/login/Login";
 import Register from "./components/login/Register";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Builder from "./components/PizzaBuilder";
+import Builder from "./components/builder/PizzaBuilder";
 const App = () => {
   return (
     <>
