@@ -29,7 +29,7 @@ const Home = () => {
             className="m-4"
           />
 
-          <Form className="d-flex w-75 mx-auto">
+          <Form className="d-flex w-75 mx-auto" action="/order/stage-2">
             <Form.Control
               size="lg"
               type="text"

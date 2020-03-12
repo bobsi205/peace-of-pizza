@@ -15,16 +15,32 @@ const Social = () => {
         className="d-flex justify-content-between mx-auto my-4"
         style={{ maxWidth: "400px" }}
       >
-        <a href="#" target="_blank">
+        <a
+          href="https://www.facebook.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={imgFacebook} alt="Facebook" height="40" />
         </a>
-        <a href="#" target="_blank">
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={imgInstagram} alt="Instagram" height="40" />
         </a>
-        <a href="#" target="_blank">
+        <a
+          href="https://twitter.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={imgTwitter} alt="Twitter" height="40" />
         </a>
-        <a href="#" target="_blank">
+        <a
+          href="https://www.yelp.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={imgYelp} alt="Yelp" height="40" />
         </a>
       </div>

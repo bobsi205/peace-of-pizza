@@ -47,8 +47,8 @@ const Reviews = () => {
 
         <div className="row my-4">
           {reviews.map(review => (
-            <div className="p-2 col-12 col-lg-6">
-              <Media className="bg-light p-4 rounded-lg" key={review.id}>
+            <div className="p-2 col-12 col-lg-6" key={review.id}>
+              <Media className="bg-light p-4 rounded-lg">
                 <img
                   src={review.avatar}
                   alt=""

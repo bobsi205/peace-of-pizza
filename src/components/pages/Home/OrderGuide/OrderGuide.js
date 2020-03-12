@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Badge } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import imgPin from "./images/icon-pin.svg";
 import imgPizza from "./images/icon-pizza.svg";

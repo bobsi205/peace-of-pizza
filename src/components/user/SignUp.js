@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
-const Register = props => {
+const SignUp = props => {
   // const [formGroup, setFormGroup] = useState({
   //   controlId: "formBasicEmail",
   //   className: "formInput",
@@ -23,7 +23,7 @@ const Register = props => {
 
   const gotoLogin = () => {
     props.history.push({
-      pathname: `/login`
+      pathname: `/sign-in`
     });
   };
 
@@ -37,19 +37,23 @@ const Register = props => {
       // }
       registerData();
       props.history.push({
-        pathname: `/login`
+        pathname: `/sign-in`
       });
     }
   };
 
   const registerData = () => {
-    var users = JSON.parse(localStorage.getItem("usersArr"));
-    users.push({
+    const users = JSON.parse(localStorage.getItem("usersArr"));
+    const user = {
       username: username,
       email: email,
       password: password
-    });
-    localStorage.setItem("usersArr", JSON.stringify(users));
+    };
+    if (users) {
+      localStorage.setItem("usersArr", JSON.stringify([...users, user]));
+    } else {
+      localStorage.setItem("usersArr", JSON.stringify([user]));
+    }
   };
 
   const passwordValidation = () => {
@@ -79,7 +83,6 @@ const Register = props => {
       className="d-flex justify-content-center align-items-center flex-column"
       style={{ height: "500px", marginBottom: "20px" }}
     >
-      <h2 className="mt-5">Registration</h2>
       <Form className="d-flex justify-content-center align-items-center flex-column mb-5">
         <Form.Group controlId="formBasicEmail" className="formInput">
           <Form.Label>Username</Form.Label>
@@ -95,7 +98,7 @@ const Register = props => {
           <Form.Text className="text-muted">{errUsername}</Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicEmail" className="formInput">
+        <Form.Group controlId="formEmail" className="formInput">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -107,7 +110,7 @@ const Register = props => {
           <Form.Text className="text-muted">{errEmail}</Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword" className="formInput">
+        <Form.Group controlId="formPassword" className="formInput">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -118,7 +121,7 @@ const Register = props => {
           />
           <Form.Text className="text-muted">{errPassword}</Form.Text>
         </Form.Group>
-        <Form.Group controlId="formBasicPassword" className="formInput">
+        <Form.Group controlId="formConfimPassword" className="formInput">
           <Form.Label>Confirm password</Form.Label>
           <Form.Control
             type="password"
@@ -130,12 +133,12 @@ const Register = props => {
           <Form.Text className="text-muted">{errPassword}</Form.Text>
         </Form.Group>
         <Button
-          variant="success"
+          variant="primary"
           type="button"
           className="formInput"
           onClick={e => submitHandler(e)}
         >
-          Submit
+          Sign Up
         </Button>
         <Button
           className="formInput"
@@ -143,11 +146,11 @@ const Register = props => {
           type="button"
           onClick={() => gotoLogin()}
         >
-          Login
+          Sign In
         </Button>
       </Form>
     </div>
   );
 };
 
-export default withRouter(Register);
+export default withRouter(SignUp);

@@ -1,18 +1,18 @@
 import React, { useState, useContext } from "react";
-import Register from "./Register";
+import SignUp from "./SignUp";
 import { Form, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { MyContext } from "../../context/MyContext";
 
-const Login = props => {
+const SignIn = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msgEmail, setMsgEmail] = useState("");
   const [msgPassword, setMsgPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [register, setRegister] = useState(true);
-  const [DB, setDB] = useState({});
-  
+  const [DB, setDB] = useState([{ email: "email@domain.com" }]);
+
   const myData = useContext(MyContext);
   console.log(myData);
 
@@ -45,7 +45,7 @@ const Login = props => {
 
   const startRegister = val => {
     props.history.push({
-      pathname: `/register`
+      pathname: `/sign-up`
     });
   };
 
@@ -74,16 +74,16 @@ const Login = props => {
           <p>{msgPassword}</p>
         </Form.Group>
 
-        <Button variant="secondary" type="submit" className="formInput">
-          Submit
+        <Button variant="primary" type="submit" className="formInput">
+          Sign In
         </Button>
         <Button
           className="formInput"
-          variant="success"
+          variant="secondary"
           type="button"
           onClick={() => startRegister(false)}
         >
-          Register
+          Sign Up
         </Button>
         <p>{loggedIn ? "logged In" : ""}</p>
       </Form>
@@ -92,8 +92,8 @@ const Login = props => {
       <p>{msgEmail}</p>
     </div>
   ) : (
-    <Register startRegister={startRegister} />
+    <SignUp startRegister={startRegister} />
   );
 };
 
-export default withRouter(Login);
+export default withRouter(SignIn);

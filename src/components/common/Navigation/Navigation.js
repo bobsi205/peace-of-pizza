@@ -5,13 +5,13 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 import imgCart from "./images/icon-cart.svg";
 
 const Navigation = () => {
-  const cartArea = true ? (
+  const cartArea = false ? (
     <>
       <Nav.Link as={Link} to="/cart" className="d-flex align-items-center mx-4">
         Cart
         <img src={imgCart} alt="Cart" height="32" className="ml-4" />
       </Nav.Link>
-      <Nav.Link as={Link} to="/sign-up" className="mx-4">
+      <Nav.Link as={Link} to="/sign-out" className="mx-4">
         Sign-Out
       </Nav.Link>
     </>
