@@ -1,8 +1,8 @@
 import React from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, InputGroup } from "react-bootstrap";
 
 import Navigation from "../../common/Navigation/Navigation";
-import Reviews from "./Reviews";
+import Reviews from "./Review/Reviews";
 import OrderGuide from "./OrderGuide/OrderGuide";
 import Social from "./Social/Social";
 
@@ -16,7 +16,8 @@ const Home = () => {
         style={{
           backgroundImage: `url(${imgBanner})`,
           backgroundSize: "cover",
-          backgroundPosition: "50% 48%"
+          backgroundPosition: "50% 45%",
+          borderBottom: "solid var(--primary) 5px"
         }}
       >
         <Navigation noBackground />
@@ -29,21 +30,29 @@ const Home = () => {
             className="m-4"
           />
 
-          <Form className="d-flex w-75 mx-auto" action="/order/stage-2">
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="Where Do We Meet?"
-              className="flex-grow-1 m-1"
-            />
-            <Button
-              variant="primary"
-              size="lg"
-              type="submit"
-              className="text-nowrap m-1"
-            >
-              Feed Me!
-            </Button>
+          <Form
+            className="mx-auto my-4"
+            style={{ maxWidth: "720px" }}
+            action="/order/stage-2"
+          >
+            <Form.Group className="d-flex">
+              <Form.Control
+                size="lg"
+                type="text"
+                placeholder="Where Do We Meet?"
+                className="flex-grow-1 m-1"
+                required
+              />
+
+              <Button
+                variant="primary"
+                size="lg"
+                type="submit"
+                className="text-nowrap m-1"
+              >
+                Feed Me!
+              </Button>
+            </Form.Group>
           </Form>
         </Container>
       </header>

@@ -37,7 +37,7 @@ const OrderGuide = () => {
           className="d-md-flex justify-content-between mx-auto"
           style={{ minHeight: "250px" }}
         >
-          <div className="my-2 mx-auto " style={{ width: "250px" }}>
+          <div className="my-2 mx-auto " style={{ width: "200px" }}>
             <div style={{ position: "relative", margin: "25px" }}>
               <img src={imgPin} alt="" height="48" className="d-inline" />
               <span style={numStyle}>1</span>
@@ -48,7 +48,7 @@ const OrderGuide = () => {
 
           <div
             className="my-2 mx-auto align-self-end"
-            style={{ width: "250px" }}
+            style={{ width: "200px" }}
           >
             <div style={{ position: "relative", margin: "25px" }}>
               <img src={imgPizza} alt="" height="48" className="d-inline" />
@@ -58,7 +58,7 @@ const OrderGuide = () => {
             <p>Pick your favorite toppings and let your creativity flow.</p>
           </div>
 
-          <div className="my-2 mx-auto" style={{ width: "250px" }}>
+          <div className="my-2 mx-auto" style={{ width: "200px" }}>
             <div style={{ position: "relative", margin: "25px" }}>
               <img src={imgDelivery} alt="" height="48" className="d-inline" />
               <span style={numStyle}>3</span>
