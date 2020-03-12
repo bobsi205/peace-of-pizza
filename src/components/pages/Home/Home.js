@@ -19,7 +19,7 @@ const Home = () => {
           backgroundPosition: "50% 48%"
         }}
       >
-        <Navigation />
+        <Navigation noBackground />
 
         <Container className="text-center py-4">
           <img
