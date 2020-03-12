@@ -112,7 +112,7 @@ const PizaaCanvas = props => {
 
   const finishOrder = () => {
     props.history.push({
-      pathname: `finish-order`
+      pathname: `/order/stage-3`
     });
   };
 

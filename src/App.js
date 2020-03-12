@@ -1,23 +1,28 @@
 import React from "react";
-import "./App.css";
-import LandingPage from "./components/LandingPage";
 import { Route, Switch } from "react-router-dom";
-import Login from "./components/login/Login";
-import Register from "./components/login/Register";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+
+import Home from "./components/pages/Home/Home";
+import SignUp from "./components/user/SignUp";
+import SignIn from "./components/user/SignIn";
+import SignOut from "./components/user/SignOut";
 import Builder from "./components/builder/PizzaBuilder";
-import FinishOrder from "./components/FinishOrder";
+import CheckOut from "./components/order/CheckOut";
+import Tracker from "./components/order/Tracker/Tracker";
+import Footer from "./components/common/Footer/Footer";
+
 const App = props => {
   return (
     <>
-      <Navbar />
+      {/*<Navbar />*/}
       <Switch>
-        <Route exact path={"/"} component={() => <LandingPage />} />
-        <Route path={"/login"} component={() => <Login />} />
-        <Route path={"/register"} component={() => <Register />} />
-        <Route path={"/order"} component={() => <Builder />} />
-        <Route path={"/finish-order"} component={() => <FinishOrder />} />
+        <Route exact path={"/"} component={() => <Home />} />
+        <Route exact path={"/sign-up"} component={() => <SignUp />} />
+        <Route exact path={"/sign-in"} component={() => <SignIn />} />
+        <Route exact path={"/sign-out"} component={() => <SignOut />} />
+        <Route exact path={"/order/stage-1"} component={() => <Home />} />
+        <Route exact path={"/order/stage-2"} component={() => <Builder />} />
+        <Route exact path={"/order/stage-3"} component={() => <CheckOut />} />
+        <Route exact path={"/order/stage-4"} component={() => <Tracker />} />
       </Switch>
       <Footer />
     </>
