@@ -16,3 +16,10 @@ code {
 .home-navbar .nav-link {
   color: white !important;
 }
+
+.formInput {
+  width: 35vw;
+}
+.toppingBtnGrp {
+  margin: 5px !important;
+}

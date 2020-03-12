@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import Register from "./Register";
 import { Form, Button } from "react-bootstrap";
-import "../../App.css";
 import { withRouter } from "react-router-dom";
 import { MyContext } from "../../context/MyContext";
 
