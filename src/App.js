@@ -7,6 +7,7 @@ import Register from "./components/login/Register";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Builder from "./components/builder/PizzaBuilder";
+import FinishOrder from "./components/FinishOrder";
 const App = props => {
   return (
     <>
@@ -16,7 +17,7 @@ const App = props => {
         <Route path={"/login"} component={() => <Login />} />
         <Route path={"/register"} component={() => <Register />} />
         <Route path={"/order"} component={() => <Builder />} />
-        {/* <Route path={"/summary"} component={()=>}/> */}
+        <Route path={"/finish-order"} component={() => <FinishOrder />} />
       </Switch>
       <Footer />
     </>

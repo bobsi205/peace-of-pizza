@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { Button } from "react-bootstrap";
 import { MyContext } from "../../context/MyContext";
 import ToppingsButtons from "./ToppingsButtons";
+import { withRouter } from "react-router-dom";
 //toppings
 import imgPepperoni from "../../images/toppings/pepperoni.png";
 import imgArtichoke from "../../images/toppings/artichoke.png";
@@ -109,6 +110,12 @@ const PizaaCanvas = props => {
     );
   };
 
+  const finishOrder = () => {
+    props.history.push({
+      pathname: `finish-order`
+    });
+  };
+
   return (
     <>
       <div className="d-flex align-content-center justify-content-center flex-column">
@@ -186,9 +193,10 @@ const PizaaCanvas = props => {
       </div>
       <div>
         <Button onClick={() => undo()}>UNDO</Button>
+        <Button onClick={() => finishOrder()}>Finish Order</Button>
       </div>
     </>
   );
 };
 
-export default PizaaCanvas;
+export default withRouter(PizaaCanvas);
