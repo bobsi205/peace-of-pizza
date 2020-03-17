@@ -5,10 +5,15 @@ const ToppingsButtons = props => {
   return (
     <Button
       variant="light"
-      className="toppingBtnGrp"
-      onClick={() => props.setCurrTop(props.topping.replace(/\s/g, ""))}
+      className="toppingBtnGrp text-left d-flex"
+      onClick={() => props.setCurrTop(props.topping.id)}
     >
-      {props.topping} <Badge variant="Success">{props.count}</Badge>
+      <img src={props.topping.icon} alt={props.topping.name} height="50" />
+      <span>
+        {props.topping.name}
+        <br />
+        <Badge variant="primary" className="text-white">{(props.count * props.topping.price).toFixed(2) + "$"}</Badge>
+      </span>
     </Button>
   );
 };

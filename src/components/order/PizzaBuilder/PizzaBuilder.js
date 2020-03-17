@@ -1,5 +1,5 @@
 import React from "react";
-import PizzaCanvas from "./PizaaCanvas";
+import PizzaCanvas from "./PizzaCanvas";
 
 const PizzaBuilder = props => {
   return (
