@@ -6,9 +6,6 @@ import ToppingsButtons from "./ToppingsButtons";
 
 import toppings from "../../../data/pizzaToppings.json";
 
-// TODO:
-// * Check cart array structure
-
 const PizaaCanvas = props => {
   const [getCart, setCart] = useContext(CartContext);
   const [getCurrTopId, setCurrTopId] = useState();
@@ -18,14 +15,6 @@ const PizaaCanvas = props => {
   imgPizza.onload = () => updateCanvas();
 
   const refCanvas = useRef(null);
-
-  // let img;
-  // const images = require.context("../../../images/toppings/", true);
-  // for (let [key, value] of Object.entries(toppings)) {
-  //   console.log(`${key}: ${value}`);
-  //   img = { ...img, [key]: images("./" + key + ".png") };
-  // }
-  // let img = { ...img, babyMozzarella: images("./" + "babyMozzarella.png") };
 
   const addTopping = e => {
     const canvas = refCanvas.current;

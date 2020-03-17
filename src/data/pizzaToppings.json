@@ -1,137 +1,138 @@
 [
-    {
-        "id": "artichoke",
-        "name": "Artichoke",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\artichoke-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\artichoke.png",
-        "price": 0.1
-    },
-    {
-        "id": "babyMozzarella",
-        "name": "Baby Mozzarella",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\babyMozzarella-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\babyMozzarella.png",
-        "price": 0.1
-    },
-    {
-        "id": "beef",
-        "name": "Beef",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\beef-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\beef.png",
-        "price": 0.1
-    },
-    {
-        "id": "bellPepers",
-        "name": "Bell Pepers",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\bellPepers-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\bellPepers.png",
-        "price": 0.1
-    },
-    {
-        "id": "bOlives",
-        "name": "Black Olives",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\bOlives-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\bOlives.png",
-        "price": 0.1
-    },
-    {
-        "id": "broccoli",
-        "name": "Broccoli",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\broccoli-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\broccoli.png",
-        "price": 0.1
-    },
-    {
-        "id": "bulgarianCheese",
-        "name": "Bulgarian Cheese",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\bulgarianCheese-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\bulgarianCheese.png",
-        "price": 0.1
-    },
-    {
-        "id": "cabanos",
-        "name": "Cabanos",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\cabanos-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\cabanos.png",
-        "price": 0.1
-    },
-    {
-        "id": "corn",
-        "name": "Corn",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\corn-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\corn.png",
-        "price": 0.1
-    },
-    {
-        "id": "extraCheese",
-        "name": "Extra Cheese",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\extraCheese-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\extraCheese.png",
-        "price": 0.1
-    },
-    {
-        "id": "garlic",
-        "name": "Garlic",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\garlic-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\garlic.png",
-        "price": 0.1
-    },
-    {
-        "id": "gOlives",
-        "name": "Green Olives",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\gOlives-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\gOlives.png",
-        "price": 0.1
-    },
-    {
-        "id": "jalapeno",
-        "name": "Jalapeno",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\jalapeno-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\jalapeno.png",
-        "price": 0.1
-    },
-    {
-        "id": "mushrooms",
-        "name": "Mushrooms",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\mushrooms-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\mushrooms.png",
-        "price": 0.1
-    },
-    {
-        "id": "pepperoni",
-        "name": "Pepperoni",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\pepperoni-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\pepperoni.png",
-        "price": 0.1
-    },
-    {
-        "id": "sheepCheese",
-        "name": "Sheep Cheese",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\sheepCheese-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\sheepCheese.png",
-        "price": 0.1
-    },
-    {
-        "id": "tomato",
-        "name": "Tomato",
-        "category": "cat",
-        "icon": "\\images\\PizzaBuilder\\icons\\tomato-icon.png",
-        "atlas": "\\images\\PizzaBuilder\\atlas\\tomato.png"
-    }
+  {
+    "id": "artichoke",
+    "name": "Artichoke",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\artichoke-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\artichoke.png",
+    "price": 0.1
+  },
+  {
+    "id": "babyMozzarella",
+    "name": "Baby Mozzarella",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\babyMozzarella-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\babyMozzarella.png",
+    "price": 0.1
+  },
+  {
+    "id": "beef",
+    "name": "Beef",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\beef-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\beef.png",
+    "price": 0.1
+  },
+  {
+    "id": "bellPepers",
+    "name": "Bell Pepers",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\bellPepers-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\bellPepers.png",
+    "price": 0.1
+  },
+  {
+    "id": "bOlives",
+    "name": "Black Olives",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\bOlives-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\bOlives.png",
+    "price": 0.1
+  },
+  {
+    "id": "broccoli",
+    "name": "Broccoli",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\broccoli-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\broccoli.png",
+    "price": 0.1
+  },
+  {
+    "id": "bulgarianCheese",
+    "name": "Bulgarian Cheese",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\bulgarianCheese-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\bulgarianCheese.png",
+    "price": 0.1
+  },
+  {
+    "id": "cabanos",
+    "name": "Cabanos",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\cabanos-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\cabanos.png",
+    "price": 0.1
+  },
+  {
+    "id": "corn",
+    "name": "Corn",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\corn-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\corn.png",
+    "price": 0.1
+  },
+  {
+    "id": "extraCheese",
+    "name": "Extra Cheese",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\extraCheese-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\extraCheese.png",
+    "price": 0.1
+  },
+  {
+    "id": "garlic",
+    "name": "Garlic",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\garlic-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\garlic.png",
+    "price": 0.1
+  },
+  {
+    "id": "gOlives",
+    "name": "Green Olives",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\gOlives-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\gOlives.png",
+    "price": 0.1
+  },
+  {
+    "id": "jalapeno",
+    "name": "Jalapeno",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\jalapeno-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\jalapeno.png",
+    "price": 0.1
+  },
+  {
+    "id": "mushrooms",
+    "name": "Mushrooms",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\mushrooms-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\mushrooms.png",
+    "price": 0.1
+  },
+  {
+    "id": "pepperoni",
+    "name": "Pepperoni",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\pepperoni-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\pepperoni.png",
+    "price": 0.1
+  },
+  {
+    "id": "sheepCheese",
+    "name": "Sheep Cheese",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\sheepCheese-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\sheepCheese.png",
+    "price": 0.1
+  },
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "category": "cat",
+    "icon": "\\images\\PizzaBuilder\\icons\\tomato-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\tomato.png",
+    "price": 0.1
+  }
 ]
