@@ -9,6 +9,7 @@ import toppings from "../../../data/pizzaToppings.json";
 const PizaaCanvas = props => {
   const [getCart, setCart] = useContext(CartContext);
   const [getCurrTopId, setCurrTopId] = useState();
+  const toppingsImages = new Image();
 
   const imgPizza = new Image();
   imgPizza.src = "/images/PizzaBuilder/pizza-base.png";
@@ -29,7 +30,7 @@ const PizaaCanvas = props => {
       return radius < 130;
     };
 
-    if (getCurrTopId && checkBounds) {
+    if (getCurrTopId && checkBounds()) {
       const newTopping = {
         id: getCurrTopId,
         index: Math.floor(Math.random() * 5),
@@ -53,14 +54,14 @@ const PizaaCanvas = props => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(imgPizza, 0, 0, canvas.width, canvas.height);
 
-    getCart.pizzas[0].toppings.forEach(topping => {
+    getCart.pizzas[0].toppings.map(topping => {
       const top = toppings.find(top => top.id === topping.id);
-      const atlas = new Image();
-      atlas.src = top.atlas;
-      atlas.onload = () => {
+      const img = new Image();
+      img.src = top.atlas;
+      img.onload = () =>
         ctx.drawImage(
-          atlas,
-          top.index * 50,
+          img,
+          topping.index * 50,
           0,
           50,
           50,
@@ -69,7 +70,6 @@ const PizaaCanvas = props => {
           50,
           50
         );
-      };
     });
   };
 
@@ -91,32 +91,54 @@ const PizaaCanvas = props => {
 
   return (
     <>
-      <div className="d-flex align-content-center justify-content-center flex-column">
-        {toppings.map(topping => {
-          return (
-            <ToppingsButtons
-              key={topping.id}
-              topping={topping}
-              count={
-                getCart.pizzas[0].toppings.filter(top => top.id === topping.id)
-                  .length
-              }
-              setCurrTop={setCurrTopId}
-            />
-          );
-        })}
-      </div>
+      <div className="d-flex flex-row">
+        <sidebar className="flex-fill">
+          {toppings.map(topping => {
+            return (
+              <ToppingsButtons
+                key={topping.id}
+                topping={topping}
+                count={
+                  getCart.pizzas[0].toppings.filter(
+                    top => top.id === topping.id
+                  ).length
+                }
+                setCurrTop={setCurrTopId}
+              />
+            );
+          })}
+        </sidebar>
 
-      <canvas
-        style={{
-          height: "400px",
-          width: "400px"
-        }}
-        ref={refCanvas}
-        width="400"
-        height="400"
-        onClick={e => addTopping(e)}
-      />
+        <sidebar className="flex-fill">
+          {toppings.map(topping => {
+            return (
+              <ToppingsButtons
+                key={topping.id}
+                topping={topping}
+                count={
+                  getCart.pizzas[0].toppings.filter(
+                    top => top.id === topping.id
+                  ).length
+                }
+                setCurrTop={setCurrTopId}
+              />
+            );
+          })}
+        </sidebar>
+
+        <canvas
+          style={{
+            height: "400px",
+            minHeight: "400px",
+            width: "400px",
+            minWidth: "400px"
+          }}
+          ref={refCanvas}
+          width="400"
+          height="400"
+          onClick={e => addTopping(e)}
+        />
+      </div>
 
       <div>
         <Button onClick={() => undo()}>UNDO</Button>
