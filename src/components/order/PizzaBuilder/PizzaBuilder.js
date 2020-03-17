@@ -1,12 +1,12 @@
 import React from "react";
-import Canvas from "./PizaaCanvas";
+import PizzaCanvas from "./PizzaCanvas";
 
 const PizzaBuilder = props => {
   return (
     <>
       <h2>Pizza Builder</h2>
       <div className="d-flex align-content-center justify-content-center">
-        <Canvas />
+        <PizzaCanvas />
       </div>
     </>
   );
