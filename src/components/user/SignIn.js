@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import SignUp from "./SignUp";
 import { Form, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
-import { MyContext } from "../../context/MyContext";
+import { CartContext } from "../../context/CartContext";
 
 const SignIn = props => {
   const [email, setEmail] = useState("");
@@ -13,8 +13,8 @@ const SignIn = props => {
   const [register, setRegister] = useState(true);
   const [DB, setDB] = useState([{ email: "email@domain.com" }]);
 
-  const myData = useContext(MyContext);
-  console.log(myData);
+  const getCart = useContext(CartContext);
+  console.log(getCart);
 
   const loginValidation = e => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { Button } from "react-bootstrap";
-import { MyContext } from "../../context/MyContext";
+import { CartContext } from "../../context/CartContext";
 import ToppingsButtons from "./ToppingsButtons";
 import { withRouter } from "react-router-dom";
 //toppings
@@ -25,8 +25,8 @@ import imgTomato from "../../images/toppings/tomato.png";
 import Pizza from "../../images/Pizza2.0.png";
 
 const PizaaCanvas = props => {
-  const [myData, setMyData] = useContext(MyContext);
-  console.log(myData);
+  const [getCart, setCart] = useContext(CartContext);
+  console.log(getCart);
   const [currTop, setCurrTop] = useState();
   var pizzaImg = new Image();
   pizzaImg.src = Pizza;
@@ -78,8 +78,8 @@ const PizaaCanvas = props => {
   // }
   // let img = { ...img, babyMozzarella: images("./" + "babyMozzarella.png") };
   const undo = () => {
-    if (myData.pizzas[0].toppings.length > 0) {
-      myData.pizzas[0].toppings.pop();
+    if (getCart.pizzas[0].toppings.length > 0) {
+      getCart.pizzas[0].toppings.pop();
       updateCanvas();
     } else console.log("there are no toppings");
   };
@@ -90,12 +90,12 @@ const PizaaCanvas = props => {
   });
 
   const updateCanvas = () => {
-    console.log(myData.pizzas[0].toppings);
+    console.log(getCart.pizzas[0].toppings);
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(pizzaImg, 0, 0, canvas.width, canvas.height);
-    myData.pizzas[0].toppings.forEach(location =>
+    getCart.pizzas[0].toppings.forEach(location =>
       ctx.drawImage(
         location.topping,
         location.part,
@@ -120,22 +120,22 @@ const PizaaCanvas = props => {
     <>
       <div className="d-flex align-content-center justify-content-center flex-column">
         <h2>Meats</h2>
-        {myData.toppingBuilder.meats.map(ele => {
+        {getCart.toppingBuilder.meats.map(ele => {
           return (
             <ToppingsButtons
               topping={ele}
-              count={myData.pizzas[0].toppingCount[ele.replace(/\s/g, "")]}
+              count={getCart.pizzas[0].toppingCount[ele.replace(/\s/g, "")]}
               setCurrTop={setCurrTop}
             />
           );
         })}
 
         <h2>Cheeses</h2>
-        {myData.toppingBuilder.cheeses.map(ele => {
+        {getCart.toppingBuilder.cheeses.map(ele => {
           return (
             <ToppingsButtons
               topping={ele}
-              count={myData.pizzas[0].toppingCount[ele.replace(/\s/g, "")]}
+              count={getCart.pizzas[0].toppingCount[ele.replace(/\s/g, "")]}
               setCurrTop={setCurrTop}
             />
           );
@@ -167,11 +167,11 @@ const PizaaCanvas = props => {
               part: Math.floor(Math.random() * Math.floor(5)) * 50,
               topping: toppingsImg[currTop]
             };
-            console.log(currTop, myData.pizzas[0].toppingCount[currTop]);
-            let tempData = { ...myData };
+            console.log(currTop, getCart.pizzas[0].toppingCount[currTop]);
+            let tempData = { ...getCart };
             tempData.pizzas[0].toppings.push(newLocation);
             tempData.pizzas[0].toppingCount[currTop]++;
-            setMyData(tempData);
+            setCart(tempData);
 
             updateCanvas();
           } else {
@@ -181,11 +181,11 @@ const PizaaCanvas = props => {
       />
       <div className="d-flex align-content-center justify-content-center flex-column">
         <h2>Vegetables</h2>
-        {myData.toppingBuilder.vegetables.map(ele => {
+        {getCart.toppingBuilder.vegetables.map(ele => {
           return (
             <ToppingsButtons
               topping={ele}
-              count={myData.pizzas[0].toppingCount[ele.replace(/\s/g, "")]}
+              count={getCart.pizzas[0].toppingCount[ele.replace(/\s/g, "")]}
               setCurrTop={setCurrTop}
             />
           );

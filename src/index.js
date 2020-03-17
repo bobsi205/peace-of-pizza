@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
-import MyContextProvider from "./context/MyContext";
+import CartContextProvider from "./context/CartContext";
 
 import App from "./App";
 
@@ -13,9 +13,9 @@ import "./index.css";
 
 const app = (
   <BrowserRouter>
-    <MyContextProvider>
+    <CartContextProvider>
       <App />
-    </MyContextProvider>
+    </CartContextProvider>
   </BrowserRouter>
 );
 

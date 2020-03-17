@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
-export const MyContext = createContext();
-const MyContextProvider = props => {
-  const [myData, setMyData] = useState({
+export const CartContext = createContext();
+const CartContextProvider = props => {
+  const [getCart, setCart] = useState({
     loggedIn: false,
     currentUser: {},
     pizzas: [
@@ -51,10 +51,10 @@ const MyContextProvider = props => {
   });
 
   return (
-    <MyContext.Provider value={[myData, setMyData]}>
+    <CartContext.Provider value={[getCart, setCart]}>
       {props.children}
-    </MyContext.Provider>
+    </CartContext.Provider>
   );
 };
 
-export default MyContextProvider;
+export default CartContextProvider;

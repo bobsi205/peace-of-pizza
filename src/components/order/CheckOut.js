@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Container, Button } from "react-bootstrap";
 import backgroundImg from "../../images/woodBackground.jpg";
-import { MyContext } from "../../context/MyContext";
+import { CartContext } from "../../context/CartContext";
 import Row from "./OrderRow";
 
 const CheckOut = props => {
-  const [myData, setMyData] = useContext(MyContext);
+  const [getCart, setCart] = useContext(CartContext);
 
   // toppings cost
   const toppingCost = 0.25;
@@ -19,7 +19,7 @@ const CheckOut = props => {
   // calculats each pizza cost
   const calculateCost = () => {
     let total = [];
-    myData.pizzas.map(pizza => {
+    getCart.pizzas.map(pizza => {
       let tCost = 0;
       Object.entries(pizza.toppingCount).map(([key, value]) => {
         tCost += value;
@@ -62,7 +62,7 @@ const CheckOut = props => {
           </tr>
         </thead>
         <tbody>
-          {myData.pizzas.map(pizza => {
+          {getCart.pizzas.map(pizza => {
             return <Row pizza={pizza} cost={cost[pizza.id]} />;
           })}
         </tbody>
