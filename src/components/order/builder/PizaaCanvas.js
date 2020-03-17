@@ -77,6 +77,7 @@ const PizaaCanvas = props => {
   //   img = { ...img, [key]: images("./" + key + ".png") };
   // }
   // let img = { ...img, babyMozzarella: images("./" + "babyMozzarella.png") };
+
   const undo = () => {
     if (getCart.pizzas[0].toppings.length > 0) {
       let tempCart = { ...getCart };
@@ -86,11 +87,44 @@ const PizaaCanvas = props => {
       updateCanvas();
     } else console.log("there are no toppings");
   };
+
   useEffect(() => {
     console.log(currTop);
-
     updateCanvas();
   });
+
+  const addTopping = e => {
+    const canvas = canvasRef.current;
+    const canvasBound = canvas.getBoundingClientRect();
+
+    if (currTop === undefined) {
+      console.log("choose a topping");
+    } else if (
+      //check if topping inside the pizza
+      Math.sqrt(
+        Math.pow(e.clientX - canvasBound.left - canvas.width / 2, 2) +
+          Math.pow(e.clientY - canvasBound.top - canvas.height / 2, 2)
+      ) < 130
+    ) {
+      //add topping to DB
+      const newLocation = {
+        x: e.clientX - 25 - canvasBound.left,
+        y: e.clientY - 25 - canvasBound.top,
+        name: currTop,
+        part: Math.floor(Math.random() * Math.floor(5)) * 50,
+        topping: toppingsImg[currTop]
+      };
+
+      let tempData = { ...getCart };
+      tempData.pizzas[0].toppings.push(newLocation);
+      tempData.pizzas[0].toppingCount[currTop]++;
+      setCart(tempData);
+
+      updateCanvas();
+    } else {
+      console.log("outside the pizza");
+    }
+  };
 
   const updateCanvas = () => {
     console.log(getCart.pizzas[0].toppings);
@@ -144,6 +178,7 @@ const PizaaCanvas = props => {
           );
         })}
       </div>
+
       <canvas
         style={{
           height: 400,
@@ -152,37 +187,9 @@ const PizaaCanvas = props => {
         ref={canvasRef}
         width={400}
         height={400}
-        onClick={e => {
-          const canvas = canvasRef.current;
-          const canvasBound = canvas.getBoundingClientRect();
-
-          if (currTop === undefined) {
-            console.log("choose a topping");
-          } else if (
-            Math.sqrt(
-              Math.pow(e.clientX - canvasBound.left - canvas.width / 2, 2) +
-                Math.pow(e.clientY - canvasBound.top - canvas.height / 2, 2)
-            ) < 130
-          ) {
-            const newLocation = {
-              x: e.clientX - 25 - canvasBound.left,
-              y: e.clientY - 25 - canvasBound.top,
-              name: currTop,
-              part: Math.floor(Math.random() * Math.floor(5)) * 50,
-              topping: toppingsImg[currTop]
-            };
-            console.log(currTop, getCart.pizzas[0].toppingCount[currTop]);
-            let tempData = { ...getCart };
-            tempData.pizzas[0].toppings.push(newLocation);
-            tempData.pizzas[0].toppingCount[currTop]++;
-            setCart(tempData);
-
-            updateCanvas();
-          } else {
-            console.log("outside the pizza");
-          }
-        }}
+        onClick={e => addTopping(e)}
       />
+
       <div className="d-flex align-content-center justify-content-center flex-column">
         <h2>Vegetables</h2>
         {getCart.toppingBuilder.vegetables.map(ele => {
