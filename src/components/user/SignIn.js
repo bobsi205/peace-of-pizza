@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import SignUp from "./SignUp";
 import { Form, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
@@ -12,25 +11,12 @@ const SignIn = props => {
   const [DB] = useState(JSON.parse(localStorage.getItem("usersArr")));
   const [getCart, setCart] = useContext(CartContext);
 
-  React.useEffect(() => {
-    console.log(DB);
-    console.log(getCart);
-  });
-
   const loginValidation = e => {
     e.preventDefault();
-    var item = {
-      email: e.target.email.value,
-      password: e.target.password.value
-    };
-    var user = DB.find(ele => ele.email === item.email);
+    var user = DB.find(ele => ele.email === email);
 
-    if (
-      user !== undefined &&
-      item.password !== undefined &&
-      item.email !== undefined
-    ) {
-      if (user.password === item.password) {
+    if (user !== undefined && password !== undefined && email !== undefined) {
+      if (user.password === password) {
         //logged in
         let tempCart = { ...getCart };
         tempCart.loggedIn = true;
@@ -68,7 +54,13 @@ const SignIn = props => {
       >
         <Form.Group controlId="formBasicEmail" className="formInput">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" name="email" placeholder="Enter email" />
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
           <Form.Text className="text-muted">{msgEmail}</Form.Text>
         </Form.Group>
 
@@ -78,6 +70,8 @@ const SignIn = props => {
             type="password"
             name="password"
             placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
           <Form.Text className="text-muted">{msgPassword}</Form.Text>
         </Form.Group>
