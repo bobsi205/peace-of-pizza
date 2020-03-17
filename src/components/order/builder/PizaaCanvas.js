@@ -181,12 +181,12 @@ const PizaaCanvas = props => {
 
       <canvas
         style={{
-          height: 400,
-          width: 400
+          height: "400px",
+          width: "400px"
         }}
         ref={canvasRef}
-        width={400}
-        height={400}
+        width="400"
+        height="400"
         onClick={e => addTopping(e)}
       />
 

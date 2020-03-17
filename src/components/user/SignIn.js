@@ -9,12 +9,13 @@ const SignIn = props => {
   const [password, setPassword] = useState("");
   const [msgEmail, setMsgEmail] = useState("");
   const [msgPassword, setMsgPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [register, setRegister] = useState(true);
-  const [DB, setDB] = useState([{ email: "email@domain.com" }]);
+  const [DB] = useState(JSON.parse(localStorage.getItem("usersArr")));
+  const [getCart, setCart] = useContext(CartContext);
 
-  const getCart = useContext(CartContext);
-  console.log(getCart);
+  React.useEffect(() => {
+    console.log(DB);
+    console.log(getCart);
+  });
 
   const loginValidation = e => {
     e.preventDefault();
@@ -30,9 +31,16 @@ const SignIn = props => {
       item.email !== undefined
     ) {
       if (user.password === item.password) {
-        setLoggedIn(true);
+        //logged in
+        let tempCart = { ...getCart };
+        tempCart.loggedIn = true;
+        tempCart.currentUser = user;
+        setCart(tempCart);
         setMsgEmail("");
         setMsgPassword("");
+        props.history.push({
+          pathname: `/`
+        });
       } else {
         setMsgPassword("wrong password");
         setMsgEmail("");
@@ -49,7 +57,7 @@ const SignIn = props => {
     });
   };
 
-  return register ? (
+  return (
     <div
       className="d-flex justify-content-center align-items-center"
       style={{ height: "500px" }}
@@ -71,7 +79,7 @@ const SignIn = props => {
             name="password"
             placeholder="Password"
           />
-          <p>{msgPassword}</p>
+          <Form.Text className="text-muted">{msgPassword}</Form.Text>
         </Form.Group>
 
         <Button variant="primary" type="submit" className="formInput">
@@ -85,14 +93,8 @@ const SignIn = props => {
         >
           Sign Up
         </Button>
-        <p>{loggedIn ? "logged In" : ""}</p>
       </Form>
-      <p>{loggedIn ? "logged In" : ""}</p>
-      <p>{msgPassword}</p>
-      <p>{msgEmail}</p>
     </div>
-  ) : (
-    <SignUp startRegister={startRegister} />
   );
 };
 

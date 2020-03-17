@@ -3,16 +3,6 @@ import { Form, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
 const SignUp = props => {
-  // const [formGroup, setFormGroup] = useState({
-  //   controlId: "formBasicEmail",
-  //   className: "formInput",
-  //   label: "Username",
-  //   type: "text",
-  //   as: "input",
-  //   name: "username",
-  //   placeholder: "Username"
-  // });
-
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,6 +10,7 @@ const SignUp = props => {
   const [errUsername, setErrUsername] = useState("");
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
+  const [DB] = useState(JSON.parse(localStorage.getItem("usersArr")));
 
   const gotoLogin = () => {
     props.history.push({
@@ -32,13 +23,12 @@ const SignUp = props => {
     emailValidation();
     passwordValidation();
     if (errEmail === "" && errUsername === "" && errPassword === "") {
-      // if (DB.find(ele => ele.email === userInput.email) !== undefined) {
-      //   //check if email exsist
-      // }
-      registerData();
-      props.history.push({
-        pathname: `/sign-in`
-      });
+      if (!DB.find(ele => ele.email === email) !== undefined) {
+        registerData();
+        props.history.push({
+          pathname: `/sign-in`
+        });
+      } else setErrEmail("Email already exist");
     }
   };
 
@@ -78,6 +68,7 @@ const SignUp = props => {
       setErrEmail("");
     else setErrEmail("wrong email");
   };
+
   return (
     <div
       className="d-flex justify-content-center align-items-center flex-column"
