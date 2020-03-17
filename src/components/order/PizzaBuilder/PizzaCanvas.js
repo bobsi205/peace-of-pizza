@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
-import { Button } from "react-bootstrap";
+import React, { useRef, useState, useContext } from "react";
+import { Button, ProgressBar } from "react-bootstrap";
 import { CartContext } from "../../../context/CartContext";
 import { withRouter } from "react-router-dom";
 import ToppingsButtons from "./ToppingsButtons";
@@ -7,9 +7,9 @@ import ToppingsButtons from "./ToppingsButtons";
 import toppings from "../../../data/pizzaToppings.json";
 
 const PizaaCanvas = props => {
+  const toppingsLimit = 250;
   const [getCart, setCart] = useContext(CartContext);
   const [getCurrTopId, setCurrTopId] = useState();
-  const toppingsImages = new Image();
 
   const imgPizza = new Image();
   imgPizza.src = "/images/PizzaBuilder/pizza-base.png";
@@ -27,7 +27,7 @@ const PizaaCanvas = props => {
           Math.pow(e.clientY - canvasBound.top - canvas.height / 2, 2)
       );
 
-      return radius < 130;
+      return radius < 140;
     };
 
     if (getCurrTopId && checkBounds()) {
@@ -89,60 +89,81 @@ const PizaaCanvas = props => {
     });
   };
 
+  const toppingBtns = filter => {
+    return toppings
+      .filter(top => top.category === filter)
+      .map(topping => {
+        return (
+          <ToppingsButtons
+            key={topping.id}
+            topping={topping}
+            count={
+              getCart.pizzas[0].toppings.filter(top => top.id === topping.id)
+                .length
+            }
+            setCurrTop={setCurrTopId}
+            selected={topping.id === getCurrTopId ? true : false}
+            limit={toppingsLimit}
+          />
+        );
+      });
+  };
+
   return (
     <>
       <div className="d-flex flex-row">
-        <sidebar className="flex-fill">
-          {toppings.map(topping => {
-            return (
-              <ToppingsButtons
-                key={topping.id}
-                topping={topping}
-                count={
-                  getCart.pizzas[0].toppings.filter(
-                    top => top.id === topping.id
-                  ).length
-                }
-                setCurrTop={setCurrTopId}
-              />
-            );
-          })}
+        <sidebar className="mr-2 flex-fill">
+          <h4>Vegetable</h4>
+          {toppingBtns("Vegetable")}
         </sidebar>
 
-        <sidebar className="flex-fill">
-          {toppings.map(topping => {
-            return (
-              <ToppingsButtons
-                key={topping.id}
-                topping={topping}
-                count={
-                  getCart.pizzas[0].toppings.filter(
-                    top => top.id === topping.id
-                  ).length
-                }
-                setCurrTop={setCurrTopId}
-              />
-            );
-          })}
-        </sidebar>
+        <span className="p-4">
+          <canvas
+            style={{
+              height: "400px",
+              minHeight: "400px",
+              width: "400px",
+              minWidth: "400px",
+              margin: "25px"
+            }}
+            ref={refCanvas}
+            width="400"
+            height="400"
+            onClick={e => addTopping(e)}
+          />
 
-        <canvas
-          style={{
-            height: "400px",
-            minHeight: "400px",
-            width: "400px",
-            minWidth: "400px"
-          }}
-          ref={refCanvas}
-          width="400"
-          height="400"
-          onClick={e => addTopping(e)}
-        />
-      </div>
+          <div className="d-flex">
+            <Button size="lg" className="mr-2" onClick={() => undo()}>
+              UNDO
+            </Button>
+            <Button
+              size="lg"
+              className="flex-fill"
+              onClick={() => finishOrder()}
+            >
+              Finish Order
+            </Button>
+          </div>
 
-      <div>
-        <Button onClick={() => undo()}>UNDO</Button>
-        <Button onClick={() => finishOrder()}>Finish Order</Button>
+          <ProgressBar
+            className="my-2 flex-fill"
+            now={getCart.pizzas[0].toppings.length}
+            max={toppingsLimit}
+            label={getCart.pizzas[0].toppings.length + " / " + toppingsLimit}
+          />
+        </span>
+
+        <span className="flex-fill d-flex flex-column">
+          <sidebar className="mr-2">
+            <h4>Dairy</h4>
+            {toppingBtns("Dairy")}
+          </sidebar>
+
+          <sidebar className="mr-2">
+            <h4>Meats</h4>
+            {toppingBtns("Meats")}
+          </sidebar>
+        </span>
       </div>
     </>
   );

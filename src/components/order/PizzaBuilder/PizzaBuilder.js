@@ -1,14 +1,13 @@
 import React from "react";
 import PizzaCanvas from "./PizzaCanvas";
+import { Container } from "react-bootstrap";
 
-const PizzaBuilder = props => {
+const PizzaBuilder = () => {
   return (
-    <>
-      <h2>Pizza Builder</h2>
-      <div className="d-flex align-content-center justify-content-center">
-        <PizzaCanvas />
-      </div>
-    </>
+    <Container>
+      <h1 className="display-4 my-4">Pizza Builder</h1>
+      <PizzaCanvas />
+    </Container>
   );
 };
 
