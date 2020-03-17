@@ -1,28 +1,28 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { Button } from "react-bootstrap";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../../context/CartContext";
 import ToppingsButtons from "./ToppingsButtons";
 import { withRouter } from "react-router-dom";
 //toppings
-import imgPepperoni from "../../images/toppings/pepperoni.png";
-import imgArtichoke from "../../images/toppings/artichoke.png";
-import imgBabyMozzarella from "../../images/toppings/babyMozzarella.png";
-import imgBeef from "../../images/toppings/beef.png";
-import imgBellPepers from "../../images/toppings/bellPepers.png";
-import imgBOlives from "../../images/toppings/bOlives.png";
-import imgBroccoli from "../../images/toppings/broccoli.png";
-import imgBulgarianCheese from "../../images/toppings/bulgarianCheese.png";
-import imgCabanos from "../../images/toppings/cabanos.png";
-import imgCorn from "../../images/toppings/corn.png";
-import imgExtraCheese from "../../images/toppings/extraCheese.png";
-import imgGarlic from "../../images/toppings/garlic.png";
-import imgGOlives from "../../images/toppings/gOlives.png";
-import imgJalapeno from "../../images/toppings/jalapeno.png";
-import imgMushrooms from "../../images/toppings/mushrooms.png";
-import imgSheepCheese from "../../images/toppings/sheepCheese.png";
-import imgTomato from "../../images/toppings/tomato.png";
+import imgPepperoni from "../../../images/toppings/pepperoni.png";
+import imgArtichoke from "../../../images/toppings/artichoke.png";
+import imgBabyMozzarella from "../../../images/toppings/babyMozzarella.png";
+import imgBeef from "../../../images/toppings/beef.png";
+import imgBellPepers from "../../../images/toppings/bellPepers.png";
+import imgBOlives from "../../../images/toppings/bOlives.png";
+import imgBroccoli from "../../../images/toppings/broccoli.png";
+import imgBulgarianCheese from "../../../images/toppings/bulgarianCheese.png";
+import imgCabanos from "../../../images/toppings/cabanos.png";
+import imgCorn from "../../../images/toppings/corn.png";
+import imgExtraCheese from "../../../images/toppings/extraCheese.png";
+import imgGarlic from "../../../images/toppings/garlic.png";
+import imgGOlives from "../../../images/toppings/gOlives.png";
+import imgJalapeno from "../../../images/toppings/jalapeno.png";
+import imgMushrooms from "../../../images/toppings/mushrooms.png";
+import imgSheepCheese from "../../../images/toppings/sheepCheese.png";
+import imgTomato from "../../../images/toppings/tomato.png";
 //pizza
-import Pizza from "../../images/Pizza2.0.png";
+import Pizza from "../../../images/Pizza2.0.png";
 
 const PizaaCanvas = props => {
   const [getCart, setCart] = useContext(CartContext);
@@ -71,7 +71,7 @@ const PizaaCanvas = props => {
   toppingsImg.SheepCheese.src = imgSheepCheese;
   toppingsImg.Tomato.src = imgTomato;
   // let img;
-  // const images = require.context("../../images/toppings/", true);
+  // const images = require.context("../../../images/toppings/", true);
   // for (let [key, value] of Object.entries(toppings)) {
   //   console.log(`${key}: ${value}`);
   //   img = { ...img, [key]: images("./" + key + ".png") };
@@ -79,7 +79,10 @@ const PizaaCanvas = props => {
   // let img = { ...img, babyMozzarella: images("./" + "babyMozzarella.png") };
   const undo = () => {
     if (getCart.pizzas[0].toppings.length > 0) {
-      getCart.pizzas[0].toppings.pop();
+      let tempCart = { ...getCart };
+      let toppName = tempCart.pizzas[0].toppings.pop();
+      tempCart.pizzas[0].toppingCount[toppName.name]--;
+      setCart(tempCart);
       updateCanvas();
     } else console.log("there are no toppings");
   };
@@ -164,6 +167,7 @@ const PizaaCanvas = props => {
             const newLocation = {
               x: e.clientX - 25 - canvasBound.left,
               y: e.clientY - 25 - canvasBound.top,
+              name: currTop,
               part: Math.floor(Math.random() * Math.floor(5)) * 50,
               topping: toppingsImg[currTop]
             };
