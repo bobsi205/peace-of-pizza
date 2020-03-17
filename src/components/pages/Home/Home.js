@@ -5,6 +5,7 @@ import Navigation from "../../common/Navigation/Navigation";
 import Reviews from "./Review/Reviews";
 import OrderGuide from "./OrderGuide/OrderGuide";
 import Social from "./Social/Social";
+import Location from "../../common/PlacesAPI/Location";
 
 import imgBanner from "./images/banner-pizza-dim.jpg";
 
@@ -29,31 +30,7 @@ const Home = () => {
             height="256"
             className="m-4"
           />
-
-          <Form
-            className="mx-auto my-4"
-            style={{ maxWidth: "720px" }}
-            action="/order/stage-2"
-          >
-            <Form.Group className="d-flex">
-              <Form.Control
-                size="lg"
-                type="text"
-                placeholder="Where Do We Meet?"
-                className="flex-grow-1 m-1"
-                required
-              />
-
-              <Button
-                variant="primary"
-                size="lg"
-                type="submit"
-                className="text-nowrap m-1"
-              >
-                Feed Me!
-              </Button>
-            </Form.Group>
-          </Form>
+          <Location />
         </Container>
       </header>
 

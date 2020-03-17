@@ -3,6 +3,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import { Form, Button, InputGroup } from "react-bootstrap";
 
 export default function App() {
   const [address, setAddress] = React.useState("");
@@ -29,19 +30,42 @@ export default function App() {
           <div>
             <p>Latitude: {coordinates.lat}</p>
             <p>Longitude: {coordinates.lng}</p>
+            <Form
+              className="mx-auto my-4"
+              style={{ maxWidth: "720px" }}
+              action="/order/stage-2"
+            >
+              <Form.Group className="d-flex">
+                <Form.Control
+                  size="lg"
+                  type="text"
+                  placeholder="Where Do We Meet?"
+                  className="flex-grow-1 m-1"
+                  required
+                  {...getInputProps({ placeholder: "Type address" })}
+                />
 
-            <input {...getInputProps({ placeholder: "Type address" })} />
-
+                <Button
+                  variant="primary"
+                  size="lg"
+                  type="submit"
+                  className="text-nowrap m-1"
+                >
+                  Feed Me!
+                </Button>
+              </Form.Group>
+            </Form>
             <div>
-              {loading ? <div>...loading</div> : null}
-
               {suggestions.map(suggestion => {
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
                 };
 
                 return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
+                  <div
+                    style={{ maxWidth: "720px" }}
+                    {...getSuggestionItemProps(suggestion, { style })}
+                  >
                     {suggestion.description}
                   </div>
                 );
