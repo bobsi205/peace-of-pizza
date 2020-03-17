@@ -7,7 +7,7 @@ import SignUp from "./components/user/SignUp";
 import SignIn from "./components/user/SignIn";
 import SignOut from "./components/user/SignOut";
 import Builder from "./components/builder/PizzaBuilder";
-import CheckOut from "./components/order/CheckOut";
+import CheckOut from "./components/order/CheckOut/CheckOut";
 import Tracker from "./components/order/Tracker/Tracker";
 
 const App = () => {

@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Container, Button } from "react-bootstrap";
-import backgroundImg from "../../images/woodBackground.jpg";
-import { CartContext } from "../../context/CartContext";
+import backgroundImg from "../../../images/woodBackground.jpg";
+import { CartContext } from "../../../context/CartContext";
 import Row from "./OrderRow";
+import { withRouter } from "react-router-dom";
 
 const CheckOut = props => {
   const [getCart, setCart] = useContext(CartContext);
@@ -73,4 +74,4 @@ const CheckOut = props => {
   );
 };
 
-export default CheckOut;
+export default withRouter(CheckOut);
