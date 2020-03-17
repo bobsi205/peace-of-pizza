@@ -1,30 +1,26 @@
 [
     {
-        "id": 0,
+        "user": "N0va",
+        "avatar": "\\images\\avatars\\avatar-n0va.jpg",
+        "text": "Good pizza.",
+        "rate": 5
+    },
+    {
+        "user": "Lilah.Kat",
+        "avatar": "\\images\\avatars\\avatar-lilah-kat.jpg",
+        "text": "Amazing pizza 😍",
+        "rate": 4
+    },
+    {
         "user": "Picho.Pich",
         "avatar": "\\images\\avatars\\avatar-picho-pich.jpg",
         "text": "Very nice 👌🏻",
         "rate": 4
     },
     {
-        "id": 1,
         "user": "HiPeRMaNo",
         "avatar": "\\images\\avatars\\avatar-hipermano.jpg",
-        "text": ". . .",
-        "rate": 0
-    },
-    {
-        "id": 2,
-        "user": "N0va",
-        "avatar": "\\images\\avatars\\avatar-n0va.jpg",
-        "text": ". . .",
-        "rate": 0
-    },
-    {
-        "id": 3,
-        "user": "Lilah.Kat",
-        "avatar": "\\images\\avatars\\avatar-lilah-kat.jpg",
-        "text": ". . .",
-        "rate": 0
+        "text": "WE ARE GOING TO F****** DIE!!!!!11 #CORONAVIURS",
+        "rate": 1
     }
 ]

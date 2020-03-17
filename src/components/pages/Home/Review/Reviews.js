@@ -28,8 +28,8 @@ const Reviews = () => {
         <h3 className="text-center">Here's What People Think About Us</h3>
 
         <div className="row my-4">
-          {reviews.map(review => (
-            <div className="p-2 col-12 col-lg-6" key={review.id}>
+          {reviews.map((review, i) => (
+            <div className="p-2 col-12 col-lg-6" key={i}>
               <Media className="bg-light p-4 rounded-lg">
                 <img
                   src={review.avatar}
