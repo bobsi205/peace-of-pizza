@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-light mt-4 py-4 text-muted">
       <Container>
         <p>
-          <strong>Peace Of Pizza</strong>™{" "}
+          <strong>Peace Of Pizza</strong>™
           <small>© Copyright 2020, All Rights Reserved.</small>
           <br />
           <small>

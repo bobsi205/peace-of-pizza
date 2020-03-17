@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Nav, Navbar, Container } from "react-bootstrap";
 
 import imgCart from "./images/icon-cart.svg";
+import { CartContext } from "../../../context/CartContext";
 
 const Navigation = props => {
-  const loggedIn = false;
+  const [getCart] = useContext(CartContext);
 
   return (
     <Navbar
@@ -26,10 +27,12 @@ const Navigation = props => {
             </Nav.Link>
           </Nav>
 
-          {loggedIn ? (
+          {getCart.loggedIn ? (
             <>
               <Nav className="d-flex align-items-md-center">
-                <Navbar.Text className="mx-4">Hi [PH]Username</Navbar.Text>
+                <Navbar.Text className="mx-4">
+                  Hello {getCart.currentUser.username}
+                </Navbar.Text>
               </Nav>
 
               <Nav className="ml-auto d-flex align-items-md-center">
