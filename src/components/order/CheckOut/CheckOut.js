@@ -6,7 +6,7 @@ import Row from "./OrderRow";
 import { withRouter } from "react-router-dom";
 
 const CheckOut = props => {
-  const [getCart, setCart] = useContext(CartContext);
+  const [getCart] = useContext(CartContext);
 
   // toppings cost
   const toppingCost = 0.25;
