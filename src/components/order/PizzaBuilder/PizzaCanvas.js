@@ -8,7 +8,7 @@ const PizaaCanvas = props => {
   const toppingsLimit = 100;
   const [getSelectedTopping, setSelectedTopping] = useState();
   const [getCart, setCart, toppings] = useContext(CartContext);
-  const [getOrder, setOrder] = useState(getCart.order[0].toppings); // TODO: Load current pizza's toppings
+  const [getOrder, setOrder] = useState(getCart.order[0].pizzaToppings); // TODO: Load current pizza's toppings
 
   const refCanvas = useRef(null);
 
@@ -89,7 +89,7 @@ const PizaaCanvas = props => {
 
   const handleFinish = () => {
     const tempCart = getCart;
-    tempCart.order[0].toppings = getOrder;
+    tempCart.order[0].pizzaToppings = getOrder;
     setCart(tempCart);
 
     props.history.push({

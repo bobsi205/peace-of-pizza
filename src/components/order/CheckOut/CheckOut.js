@@ -6,10 +6,7 @@ import Row from "./OrderRow";
 import { withRouter } from "react-router-dom";
 
 const CheckOut = props => {
-  const [getCart] = useContext(CartContext);
-
-  // toppings cost
-  const toppingCost = 0.25;
+  const [getCart, , toppings] = useContext(CartContext);
 
   const clickFinishOrder = () => {
     props.history.push({
@@ -19,17 +16,31 @@ const CheckOut = props => {
 
   // calculats each pizza cost
   const calculateCost = () => {
-    let total = [];
-    getCart.pizzas.map(pizza => {
-      let tCost = 0;
-      Object.entries(pizza.toppingCount).map(([key, value]) => {
-        tCost += value;
+    let pizzasCost = [];
+    pizzasCost = getCart.order.map((pizza, index) => {
+      let tempCost = 50;
+      let toppingsCount = toppingCount(index);
+      toppingsCount.map(top => {
+        let data = toppings.find(ele => ele.name === top.name);
+        tempCost += top.count * data.price;
         return false;
       });
-      total.push(tCost * toppingCost + 50);
-      return false;
+      return tempCost;
     });
-    return total;
+
+    return pizzasCost;
+  };
+
+  const toppingCount = id => {
+    let toppingsCount = [];
+    toppings.forEach(top => {
+      let len = getCart.order[id].pizzaToppings.filter(
+        pTop => pTop.id === top.id
+      ).length;
+      if (len > 0)
+        toppingsCount = [...toppingsCount, { name: top.name, count: len }];
+    });
+    return toppingsCount;
   };
 
   // calculats the total cost of pizzas
@@ -42,6 +53,7 @@ const CheckOut = props => {
     return total;
   };
   let cost = calculateCost();
+  console.log(cost);
 
   return (
     <Container
@@ -63,8 +75,17 @@ const CheckOut = props => {
           </tr>
         </thead>
         <tbody>
-          {getCart.pizzas.map(pizza => {
-            return <Row pizza={pizza} cost={cost[pizza.id]} />;
+          {getCart.order.map((pizza, index) => {
+            console.log(pizza, pizza.name);
+
+            return (
+              <Row
+                pizza={pizza}
+                pizzaId={index}
+                cost={cost[index]}
+                toppingCount={toppingCount}
+              />
+            );
           })}
         </tbody>
       </table>

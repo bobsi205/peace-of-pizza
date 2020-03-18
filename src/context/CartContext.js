@@ -11,8 +11,7 @@ const CartContextProvider = props => {
     order: [
       {
         name: "pizza",
-        pizza: "pizza-id",
-        toppings: []
+        pizzaToppings: []
       }
     ]
   });

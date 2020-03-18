@@ -6,21 +6,19 @@ const OrderRow = props => {
   const clickHandler = () => {
     props.history.push({
       pathname: "/order/stage-2",
-      state: { currentPizza: props.pizza.id }
+      state: { currentPizza: props.pizzaId }
     });
   };
   return (
     <tr>
-      <th scope="row">{props.pizza.id + 1}</th>
+      <th scope="row">{props.pizzaId + 1}</th>
       <td>
-        {Object.entries(props.pizza.toppingCount).map(([key, value]) => {
-          if (value > 0)
-            return (
-              <p style={{ fontWeight: "bold" }}>
-                {key} : {value}
-              </p>
-            );
-          else return false;
+        {props.toppingCount(props.pizzaId).map(topp => {
+          return (
+            <p style={{ fontWeight: "bold" }}>
+              {topp.name} : {topp.count}
+            </p>
+          );
         })}
       </td>
       <td style={{ fontWeight: "bold" }}>{props.cost}</td>
