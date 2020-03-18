@@ -13,6 +13,46 @@ const CartContextProvider = props => {
       {
         name: "pizza",
         pizzaToppings: []
+      },
+      {
+        name: "Debug Pizza",
+        pizzaToppings: [
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "tomato" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "mushrooms" },
+          { id: "bellPepers" },
+          { id: "bellPepers" },
+          { id: "bellPepers" },
+          { id: "bellPepers" },
+          { id: "bellPepers" },
+          { id: "bellPepers" },
+          { id: "bellPepers" },
+          { id: "bellPepers" }
+        ]
       }
     ]
   });
