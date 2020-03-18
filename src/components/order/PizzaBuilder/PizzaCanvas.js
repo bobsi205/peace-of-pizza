@@ -7,15 +7,15 @@ import ToppingsButtons from "./ToppingsButtons";
 import toppings from "../../../data/pizzaToppings.json";
 
 const PizaaCanvas = props => {
-  const toppingsLimit = 250;
+  const toppingsLimit = 100;
   const [getCart, setCart] = useContext(CartContext);
   const [getCurrTopId, setCurrTopId] = useState();
+
+  const refCanvas = useRef(null);
 
   const imgPizza = new Image();
   imgPizza.src = "/images/PizzaBuilder/pizza-base.png";
   imgPizza.onload = () => updateCanvas();
-
-  const refCanvas = useRef(null);
 
   const addTopping = e => {
     const canvas = refCanvas.current;
@@ -30,7 +30,11 @@ const PizaaCanvas = props => {
       return radius < 140;
     };
 
-    if (getCurrTopId && checkBounds()) {
+    if (
+      checkBounds() &&
+      getCurrTopId &&
+      getCart.pizzas[0].toppings.length < toppingsLimit
+    ) {
       const newTopping = {
         id: getCurrTopId,
         index: Math.floor(Math.random() * 5),
@@ -58,7 +62,7 @@ const PizaaCanvas = props => {
       const top = toppings.find(top => top.id === topping.id);
       const img = new Image();
       img.src = top.atlas;
-      img.onload = () =>
+      img.onload = () => {
         ctx.drawImage(
           img,
           topping.index * 50,
@@ -70,20 +74,25 @@ const PizaaCanvas = props => {
           50,
           50
         );
+      };
     });
   };
 
-  const undo = () => {
+  const handleUndo = () => {
     if (getCart.pizzas[0].toppings.length > 0) {
-      let tempCart = { ...getCart };
-      let toppName = tempCart.pizzas[0].toppings.pop();
-      tempCart.pizzas[0].toppingCount[toppName.name]--;
+      const tempCart = { ...getCart };
+      tempCart.pizzas[0].toppings.pop();
       setCart(tempCart);
-      updateCanvas();
-    } else console.log("there are no toppings");
+    }
   };
 
-  const finishOrder = () => {
+  const handleClear = () => {
+    const tempCart = { ...getCart };
+    tempCart.pizzas[0].toppings = [];
+    setCart(tempCart);
+  };
+
+  const handleSave = () => {
     props.history.push({
       pathname: `/order/stage-3`
     });
@@ -111,20 +120,47 @@ const PizaaCanvas = props => {
 
   return (
     <>
+      {/* Preload images */}
+      <div
+        style={{
+          height: 0,
+          width: 0,
+          overflow: "hidden",
+          margin: 0,
+          padding: 0
+        }}
+      >
+        {toppings.map(top => (
+          <img src={top.atlas} alt="" />
+        ))}
+      </div>
+
       <div className="d-flex flex-row">
-        <sidebar className="mr-2 flex-fill">
+        <div className="mr-2 flex-fill order-1">
           <h4>Vegetable</h4>
           {toppingBtns("Vegetable")}
-        </sidebar>
+        </div>
 
-        <span className="p-4">
+        <span className="flex-fill d-flex flex-column order-3">
+          <div className="mr-2">
+            <h4>Dairy</h4>
+            {toppingBtns("Dairy")}
+          </div>
+
+          <div className="mr-2">
+            <h4>Meats</h4>
+            {toppingBtns("Meats")}
+          </div>
+        </span>
+
+        <span className="p-4 order-2">
           <canvas
             style={{
               height: "400px",
               minHeight: "400px",
               width: "400px",
               minWidth: "400px",
-              margin: "25px"
+              margin: "10px 25px"
             }}
             ref={refCanvas}
             width="400"
@@ -132,37 +168,33 @@ const PizaaCanvas = props => {
             onClick={e => addTopping(e)}
           />
 
-          <div className="d-flex">
-            <Button size="lg" className="mr-2" onClick={() => undo()}>
-              UNDO
-            </Button>
-            <Button
-              size="lg"
-              className="flex-fill"
-              onClick={() => finishOrder()}
-            >
-              Finish Order
-            </Button>
-          </div>
-
           <ProgressBar
             className="my-2 flex-fill"
             now={getCart.pizzas[0].toppings.length}
             max={toppingsLimit}
-            label={getCart.pizzas[0].toppings.length + " / " + toppingsLimit}
+            label={
+              getCart.pizzas[0].toppings.length >= toppingsLimit
+                ? "Toppings limit reached"
+                : ""
+            }
+            style={{ height: "25px", fontSize: "12pt" }}
           />
-        </span>
 
-        <span className="flex-fill d-flex flex-column">
-          <sidebar className="mr-2">
-            <h4>Dairy</h4>
-            {toppingBtns("Dairy")}
-          </sidebar>
-
-          <sidebar className="mr-2">
-            <h4>Meats</h4>
-            {toppingBtns("Meats")}
-          </sidebar>
+          <div className="d-flex">
+            <Button size="lg" onClick={() => handleUndo()}>
+              Undo
+            </Button>
+            <Button
+              size="lg"
+              className="flex-fill mx-2"
+              onClick={() => handleSave()}
+            >
+              Finish
+            </Button>
+            <Button size="lg" onClick={() => handleClear()}>
+              Clear
+            </Button>
+          </div>
         </span>
       </div>
     </>
