@@ -4,8 +4,9 @@ import PlacesAutocomplete, {
   getLatLng
 } from "react-places-autocomplete";
 import { Form, Button } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
-export default function App() {
+const Location = props => {
   const [address, setAddress] = React.useState("");
   const [, setCoordinates] = React.useState({
     lat: null,
@@ -18,7 +19,10 @@ export default function App() {
     setAddress(value);
     setCoordinates(latLng);
   };
-
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.history.push("/order/stage-2");
+  };
   return (
     <div className="mx-auto my-4" style={{ maxWidth: "720px" }}>
       <PlacesAutocomplete
@@ -28,7 +32,7 @@ export default function App() {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <div>
-            <Form action="/order/stage-2">
+            <Form onSubmit={e => handleSubmit(e)}>
               <Form.Group className="d-flex">
                 <Form.Control
                   size="lg"
@@ -61,4 +65,5 @@ export default function App() {
       </PlacesAutocomplete>
     </div>
   );
-}
+};
+export default withRouter(Location);
