@@ -4,13 +4,11 @@ import { CartContext } from "../../../context/CartContext";
 import { withRouter } from "react-router-dom";
 import ToppingButton from "./ToppingButton";
 
-import toppings from "../../../data/pizzaToppings.json";
-
 const PizaaCanvas = props => {
   const toppingsLimit = 100;
   const [getSelectedTopping, setSelectedTopping] = useState();
-  const [getCart, setCart] = useContext(CartContext);
-  const [getOrder, setOrder] = useState(getCart.pizzas[0].toppings); // TODO: Load current pizza's toppings
+  const [getCart, setCart, toppings] = useContext(CartContext);
+  const [getOrder, setOrder] = useState(getCart.order[0].toppings); // TODO: Load current pizza's toppings
 
   const refCanvas = useRef(null);
 
