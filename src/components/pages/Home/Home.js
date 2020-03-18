@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Button, InputGroup } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import Navigation from "../../common/Navigation/Navigation";
 import Reviews from "./Review/Reviews";
