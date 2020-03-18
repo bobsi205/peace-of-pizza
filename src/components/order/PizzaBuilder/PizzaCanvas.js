@@ -2,14 +2,15 @@ import React, { useRef, useState, useContext } from "react";
 import { Button, ProgressBar } from "react-bootstrap";
 import { CartContext } from "../../../context/CartContext";
 import { withRouter } from "react-router-dom";
-import ToppingsButtons from "./ToppingsButtons";
+import ToppingButton from "./ToppingButton";
 
 import toppings from "../../../data/pizzaToppings.json";
 
 const PizaaCanvas = props => {
   const toppingsLimit = 100;
+  const [getSelectedTopping, setSelectedTopping] = useState();
   const [getCart, setCart] = useContext(CartContext);
-  const [getCurrTopId, setCurrTopId] = useState();
+  const [getOrder, setOrder] = useState(getCart.pizzas[0].toppings); // TODO: Load current pizza's toppings
 
   const refCanvas = useRef(null);
 
@@ -32,11 +33,11 @@ const PizaaCanvas = props => {
 
     if (
       checkBounds() &&
-      getCurrTopId &&
-      getCart.pizzas[0].toppings.length < toppingsLimit
+      getSelectedTopping &&
+      getOrder.length < toppingsLimit
     ) {
       const newTopping = {
-        id: getCurrTopId,
+        id: getSelectedTopping,
         index: Math.floor(Math.random() * 5),
         coords: {
           x: e.clientX - 25 - canvasBound.left,
@@ -44,9 +45,7 @@ const PizaaCanvas = props => {
         }
       };
 
-      let tempData = { ...getCart };
-      tempData.pizzas[0].toppings.push(newTopping);
-      setCart(tempData);
+      setOrder([...getOrder, newTopping]);
     }
   };
 
@@ -58,7 +57,7 @@ const PizaaCanvas = props => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(imgPizza, 0, 0, canvas.width, canvas.height);
 
-    getCart.pizzas[0].toppings.map(topping => {
+    getOrder.forEach(topping => {
       const top = toppings.find(top => top.id === topping.id);
       const img = new Image();
       img.src = top.atlas;
@@ -79,39 +78,39 @@ const PizaaCanvas = props => {
   };
 
   const handleUndo = () => {
-    if (getCart.pizzas[0].toppings.length > 0) {
-      const tempCart = { ...getCart };
-      tempCart.pizzas[0].toppings.pop();
-      setCart(tempCart);
+    if (getOrder.length > 0) {
+      const tempOrder = [...getOrder];
+      tempOrder.pop();
+      setOrder(tempOrder);
     }
   };
 
   const handleClear = () => {
-    const tempCart = { ...getCart };
-    tempCart.pizzas[0].toppings = [];
-    setCart(tempCart);
+    setOrder([]);
   };
 
-  const handleSave = () => {
+  const handleFinish = () => {
+    // TODO: update cart
+    const t = getCart;
+    setCart(t);
+    ////////////////////
+
     props.history.push({
       pathname: `/order/stage-3`
     });
   };
 
-  const toppingBtns = filter => {
+  const toppingButtons = filter => {
     return toppings
       .filter(top => top.category === filter)
       .map(topping => {
         return (
-          <ToppingsButtons
+          <ToppingButton
             key={topping.id}
             topping={topping}
-            count={
-              getCart.pizzas[0].toppings.filter(top => top.id === topping.id)
-                .length
-            }
-            setCurrTop={setCurrTopId}
-            selected={topping.id === getCurrTopId ? true : false}
+            count={getOrder.filter(top => top.id === topping.id).length}
+            onClick={setSelectedTopping}
+            selected={topping.id === getSelectedTopping ? true : false}
             limit={toppingsLimit}
           />
         );
@@ -131,25 +130,25 @@ const PizaaCanvas = props => {
         }}
       >
         {toppings.map(top => (
-          <img src={top.atlas} alt="" />
+          <img src={top.atlas} alt="" key={top.id} />
         ))}
       </div>
 
       <div className="d-flex flex-row">
         <div className="mr-2 flex-fill order-1">
           <h4>Vegetable</h4>
-          {toppingBtns("Vegetable")}
+          {toppingButtons("Vegetable")}
         </div>
 
         <span className="flex-fill d-flex flex-column order-3">
           <div className="mr-2">
             <h4>Dairy</h4>
-            {toppingBtns("Dairy")}
+            {toppingButtons("Dairy")}
           </div>
 
           <div className="mr-2">
             <h4>Meats</h4>
-            {toppingBtns("Meats")}
+            {toppingButtons("Meats")}
           </div>
         </span>
 
@@ -170,12 +169,10 @@ const PizaaCanvas = props => {
 
           <ProgressBar
             className="my-2 flex-fill"
-            now={getCart.pizzas[0].toppings.length}
+            now={getOrder.length}
             max={toppingsLimit}
             label={
-              getCart.pizzas[0].toppings.length >= toppingsLimit
-                ? "Toppings limit reached"
-                : ""
+              getOrder.length >= toppingsLimit ? "Toppings limit reached" : ""
             }
             style={{ height: "25px", fontSize: "12pt" }}
           />
@@ -187,7 +184,7 @@ const PizaaCanvas = props => {
             <Button
               size="lg"
               className="flex-fill mx-2"
-              onClick={() => handleSave()}
+              onClick={() => handleFinish()}
             >
               Finish
             </Button>
