@@ -9,6 +9,7 @@ const OrderRow = props => {
       state: { currentPizza: props.pizzaId }
     });
   };
+
   return (
     <tr>
       <th scope="row">{props.pizzaId + 1}</th>
@@ -21,7 +22,7 @@ const OrderRow = props => {
           );
         })}
       </td>
-      <td style={{ fontWeight: "bold" }}>{props.cost}</td>
+      <td style={{ fontWeight: "bold" }}>{props.cost.toFixed(2)} $</td>
       <td>
         <Button onClick={() => clickHandler()}> EDIT</Button>
       </td>

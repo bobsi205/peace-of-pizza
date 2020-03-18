@@ -89,7 +89,7 @@ const CheckOut = props => {
           })}
         </tbody>
       </table>
-      <h2>Total cost: {totalCost(cost)}</h2>
+      <h2>Total cost: {totalCost(cost).toFixed(2)} $</h2>
       <Button onClick={() => clickFinishOrder()}>Order</Button>
     </Container>
   );
