@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
 const SignUp = props => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [conPassword, setConPassword] = useState("");
+  const [confirmPass, setconfirmPass] = useState("");
   const [errUsername, setErrUsername] = useState("");
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
@@ -48,7 +48,7 @@ const SignUp = props => {
 
   const passwordValidation = () => {
     if (/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,20}$/.test(password)) {
-      if (password === conPassword) setErrPassword("");
+      if (password === confirmPass) setErrPassword("");
       else setErrPassword("passwords does not match");
     } else setErrPassword("password does not meet requirments");
   };
@@ -70,16 +70,19 @@ const SignUp = props => {
   };
 
   return (
-    <div
-      className="d-flex justify-content-center align-items-center flex-column"
-      style={{ height: "500px", marginBottom: "20px" }}
+    <Container
+      className="d-flex flex-row align-items-center"
+      style={{ minHeight: "80vh" }}
     >
-      <Form className="d-flex justify-content-center align-items-center flex-column mb-5">
-        <Form.Group controlId="formBasicEmail" className="formInput">
+      <Form
+        className="mx-auto w-100"
+        style={{ maxWidth: "500px" }}
+        onSubmit={e => submitHandler(e)}
+      >
+        <Form.Group controlId="formUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
-            as="input"
             name="username"
             placeholder="Username"
             value={username}
@@ -89,19 +92,19 @@ const SignUp = props => {
           <Form.Text className="text-muted">{errUsername}</Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formEmail" className="formInput">
+        <Form.Group controlId="formEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="email@domain.com"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
           <Form.Text className="text-muted">{errEmail}</Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formPassword" className="formInput">
+        <Form.Group controlId="formPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -112,35 +115,28 @@ const SignUp = props => {
           />
           <Form.Text className="text-muted">{errPassword}</Form.Text>
         </Form.Group>
-        <Form.Group controlId="formConfimPassword" className="formInput">
+
+        <Form.Group controlId="formConfimPassword">
           <Form.Label>Confirm password</Form.Label>
           <Form.Control
             type="password"
-            name="conPassword"
+            name="confirmPass"
             placeholder="Confirm Password"
-            value={conPassword}
-            onChange={e => setConPassword(e.target.value)}
+            value={confirmPass}
+            onChange={e => setconfirmPass(e.target.value)}
           />
           <Form.Text className="text-muted">{errPassword}</Form.Text>
         </Form.Group>
-        <Button
-          variant="primary"
-          type="button"
-          className="formInput"
-          onClick={e => submitHandler(e)}
-        >
+
+        <Button type="submit" block>
           Sign Up
         </Button>
-        <Button
-          className="formInput"
-          variant="secondary"
-          type="button"
-          onClick={() => gotoLogin()}
-        >
+
+        <Button variant="secondary" block onClick={() => gotoLogin()}>
           Sign In
         </Button>
       </Form>
-    </div>
+    </Container>
   );
 };
 

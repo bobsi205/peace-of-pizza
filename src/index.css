@@ -23,11 +23,3 @@
 img::selection {
   background: none;
 }
-
-/* wut? */
-.formInput {
-  width: 35vw;
-}
-.toppingBtnGrp {
-  margin: 5px !important;
-}
