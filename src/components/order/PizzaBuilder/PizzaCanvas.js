@@ -88,10 +88,9 @@ const PizaaCanvas = props => {
   };
 
   const handleFinish = () => {
-    // TODO: update cart
-    const t = getCart;
-    setCart(t);
-    ////////////////////
+    const tempCart = getCart;
+    tempCart.order[0].toppings = getOrder;
+    setCart(tempCart);
 
     props.history.push({
       pathname: `/order/stage-3`
