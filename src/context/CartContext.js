@@ -8,6 +8,7 @@ const CartContextProvider = props => {
   const [getCart, setCart] = useState({
     loggedIn: false,
     currentUser: {},
+    basePrice: 50,
     order: [
       {
         name: "pizza",
