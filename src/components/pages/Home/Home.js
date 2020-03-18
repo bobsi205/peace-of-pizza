@@ -10,17 +10,16 @@ import Location from "../../common/PlacesAPI/Location";
 import imgBanner from "./images/banner-pizza-dim.jpg";
 
 const Home = () => {
+  const styleHeader = {
+    backgroundImage: `url(${imgBanner})`,
+    backgroundSize: "cover",
+    backgroundPosition: "50% 45%",
+    borderBottom: "solid var(--primary) 5px"
+  };
+
   return (
     <>
-      <header
-        className="bg-light"
-        style={{
-          backgroundImage: `url(${imgBanner})`,
-          backgroundSize: "cover",
-          backgroundPosition: "50% 45%",
-          borderBottom: "solid var(--primary) 5px"
-        }}
-      >
+      <header className="bg-light" style={styleHeader}>
         <Navigation noBackground />
 
         <Container className="text-center py-4">
@@ -30,6 +29,7 @@ const Home = () => {
             height="256"
             className="m-4"
           />
+
           <Location />
         </Container>
       </header>
