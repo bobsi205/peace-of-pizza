@@ -128,11 +128,11 @@
     "price": 0.1
   },
   {
-    "id": "sheepCheese",
-    "name": "Sheep Cheese",
+    "id": "goatCheese",
+    "name": "Goat Cheese",
     "category": "Dairy",
-    "icon": "\\images\\PizzaBuilder\\icons\\sheepCheese-icon.png",
-    "atlas": "\\images\\PizzaBuilder\\atlas\\sheepCheese.png",
+    "icon": "\\images\\PizzaBuilder\\icons\\goatCheese-icon.png",
+    "atlas": "\\images\\PizzaBuilder\\atlas\\goatCheese.png",
     "price": 0.1
   }
 ]
