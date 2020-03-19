@@ -19,10 +19,14 @@ const SignUp = props => {
   };
 
   const submitHandler = e => {
-    usernameValidation();
-    emailValidation();
-    passwordValidation();
-    if (errEmail === "" && errUsername === "" && errPassword === "") {
+    e.preventDefault();
+    let eValidation = 0,
+      uValidation = 0,
+      pValidation = 0;
+    uValidation = usernameValidation();
+    eValidation = emailValidation();
+    pValidation = passwordValidation();
+    if (eValidation && uValidation && pValidation) {
       if (!DB.find(ele => ele.email === email) !== undefined) {
         registerData();
         props.history.push({
@@ -48,9 +52,12 @@ const SignUp = props => {
 
   const passwordValidation = () => {
     if (/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,20}$/.test(password)) {
-      if (password === confirmPass) setErrPassword("");
-      else setErrPassword("passwords does not match");
+      if (password === confirmPass) {
+        setErrPassword("");
+        return 1;
+      } else setErrPassword("passwords does not match");
     } else setErrPassword("password does not meet requirments");
+    return 0;
   };
 
   const usernameValidation = e => {
@@ -58,15 +65,19 @@ const SignUp = props => {
       /^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(
         username
       )
-    )
+    ) {
       setErrUsername("");
-    else setErrUsername("wrong username");
+      return 1;
+    } else setErrUsername("wrong username");
+    return 0;
   };
 
   const emailValidation = e => {
-    if (/^[a-zA-Z0-9.]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email))
+    if (/^[a-zA-Z0-9.]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email)) {
       setErrEmail("");
-    else setErrEmail("wrong email");
+      return 1;
+    } else setErrEmail("wrong email");
+    return 0;
   };
 
   return (
@@ -125,7 +136,6 @@ const SignUp = props => {
             value={confirmPass}
             onChange={e => setconfirmPass(e.target.value)}
           />
-          <Form.Text className="text-muted">{errPassword}</Form.Text>
         </Form.Group>
 
         <Button type="submit" block>
