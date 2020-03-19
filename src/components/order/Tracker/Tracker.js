@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, ProgressBar } from "react-bootstrap";
 
 const Tracker = () => {
@@ -39,7 +39,11 @@ const Tracker = () => {
       }
     }
   ]);
-
+  useEffect(() => {
+    setTimeout(() => {
+      nextStage();
+    }, 3000);
+  });
   const nextStage = () => {
     let tempProgress = [...getProgress];
     let i = tempProgress.findIndex(bar => bar.status.variant === "success");
