@@ -6,7 +6,8 @@ import imgCart from "./images/icon-cart.svg";
 import { CartContext } from "../../../context/CartContext";
 
 const Navigation = props => {
-  const [getCart] = useContext(CartContext);
+  const { getCart } = useContext(CartContext);
+  console.log(getCart);
 
   return (
     <Navbar

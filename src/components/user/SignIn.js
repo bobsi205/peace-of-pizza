@@ -9,7 +9,7 @@ const SignIn = props => {
   const [msgEmail, setMsgEmail] = useState("");
   const [msgPassword, setMsgPassword] = useState("");
   const [DB] = useState(JSON.parse(localStorage.getItem("usersArr")));
-  const [getCart, setCart] = useContext(CartContext);
+  const { getCart, setCart } = useContext(CartContext);
 
   const loginValidation = e => {
     e.preventDefault();

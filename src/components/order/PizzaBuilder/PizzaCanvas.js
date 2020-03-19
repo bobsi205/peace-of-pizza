@@ -7,7 +7,7 @@ import ToppingButton from "./ToppingButton";
 const PizaaCanvas = props => {
   const toppingsLimit = 100;
   const [getSelectedTopping, setSelectedTopping] = useState();
-  const [getCart, setCart, toppings] = useContext(CartContext);
+  const { getCart, setCart, toppings } = useContext(CartContext);
   const [getOrder, setOrder] = useState(getCart.order[0].pizzaToppings); // TODO: Load current pizza's toppings
 
   const refCanvas = useRef(null);

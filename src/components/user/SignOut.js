@@ -3,7 +3,7 @@ import { CartContext } from "../../context/CartContext";
 
 import { withRouter } from "react-router-dom";
 const SignOut = props => {
-  const [getCart, setCart] = useContext(CartContext);
+  const { getCart, setCart } = useContext(CartContext);
 
   useEffect(() => {
     let tempCart = getCart;

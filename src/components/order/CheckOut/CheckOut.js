@@ -6,7 +6,7 @@ import Row from "./OrderRow";
 import { withRouter } from "react-router-dom";
 
 const CheckOut = props => {
-  const [getCart, , toppings] = useContext(CartContext);
+  const { getCart, toppings } = useContext(CartContext);
 
   const clickFinishOrder = () => {
     props.history.push({
