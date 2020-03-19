@@ -6,7 +6,7 @@ const SignOut = props => {
   const [getCart, setCart] = useContext(CartContext);
 
   useEffect(() => {
-    let tempCart = getCart;
+    let tempCart = { ...getCart };
     tempCart.loggedIn = false;
     tempCart.currentUser = {};
     setCart(tempCart);
