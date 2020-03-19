@@ -7,55 +7,9 @@ export const CartContext = createContext();
 
 const CartContextProvider = props => {
   const [getCart, setCart] = useState({
-    loggedIn: false,
     currentUser: {},
     basePrice: 50,
-    order: [
-      {
-        name: "pizza",
-        toppings: []
-      },
-      {
-        name: "Debug Pizza",
-        toppings: [
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "tomato" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "mushrooms" },
-          { id: "bellPepers" },
-          { id: "bellPepers" },
-          { id: "bellPepers" },
-          { id: "bellPepers" },
-          { id: "bellPepers" },
-          { id: "bellPepers" },
-          { id: "bellPepers" },
-          { id: "bellPepers" }
-        ]
-      }
-    ]
+    order: []
   });
 
   const countToppings = toppings => {
@@ -64,15 +18,18 @@ const CartContextProvider = props => {
       const toppingCount = toppings.filter(
         topping => topping.id === toppingData.id
       ).length;
-      summery = [
-        ...summery,
-        {
-          id: toppingData.id,
-          name: toppingData.name,
-          amount: toppingCount,
-          price: toppingCount * toppingData.price
-        }
-      ];
+
+      if (toppingCount) {
+        summery = [
+          ...summery,
+          {
+            id: toppingData.id,
+            name: toppingData.name,
+            amount: toppingCount,
+            price: toppingCount * toppingData.price
+          }
+        ];
+      }
     });
     return summery;
   };

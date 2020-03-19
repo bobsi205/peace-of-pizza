@@ -28,7 +28,7 @@ const Navigation = props => {
             </Nav.Link>
           </Nav>
 
-          {getCart.loggedIn ? (
+          {getCart.currentUser ? (
             <>
               <Nav className="d-flex align-items-md-center">
                 <Navbar.Text className="mx-4">

@@ -19,7 +19,6 @@ const SignIn = props => {
       if (user.password === password) {
         //logged in
         let tempCart = { ...getCart };
-        tempCart.loggedIn = true;
         tempCart.currentUser = user;
         setCart(tempCart);
         setMsgEmail("");
