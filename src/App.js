@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
 import Home from "./components/pages/Home/Home";
@@ -12,7 +12,7 @@ import Tracker from "./components/order/Tracker/Tracker";
 
 const App = () => {
   return (
-    <Layout route="/not-home" /* TODO: Pass route path from router */>
+    <Layout route={useLocation().pathname}>
       <Switch>
         <Route exact path={"/"} component={() => <Home />} />
         <Route exact path={"/sign-up"} component={() => <SignUp />} />
