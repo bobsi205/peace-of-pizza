@@ -6,7 +6,7 @@ import Row from "./OrderRow";
 import { withRouter } from "react-router-dom";
 
 const CheckOut = props => {
-  const { getCart, toppings } = useContext(CartContext);
+  const { toppingsData, getCart } = useContext(CartContext);
 
   const clickFinishOrder = () => {
     props.history.push({
@@ -21,7 +21,7 @@ const CheckOut = props => {
       let tempCost = 50;
       let toppingsCount = toppingCount(index);
       toppingsCount.map(top => {
-        let data = toppings.find(ele => ele.name === top.name);
+        let data = toppingsData.find(ele => ele.name === top.name);
         tempCost += top.count * data.price;
         return false;
       });
@@ -33,10 +33,9 @@ const CheckOut = props => {
 
   const toppingCount = id => {
     let toppingsCount = [];
-    toppings.forEach(top => {
-      let len = getCart.order[id].pizzaToppings.filter(
-        pTop => pTop.id === top.id
-      ).length;
+    toppingsData.forEach(top => {
+      let len = getCart.order[id].toppings.filter(pTop => pTop.id === top.id)
+        .length;
       if (len > 0)
         toppingsCount = [...toppingsCount, { name: top.name, count: len }];
     });

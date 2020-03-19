@@ -5,10 +5,17 @@ import { withRouter } from "react-router-dom";
 import ToppingButton from "./ToppingButton";
 
 const PizaaCanvas = props => {
+  const pizzaIndex = 0; // TODO: Load current pizza's index
+  const newPizza = true; // TODO: Check if in edit mode
+  const pizzaId = ""; // TODO: Load current pizza's ID
+  const pizzaName = "Test Pizza"; // TODO: Get pizza's name
+
   const toppingsLimit = 100;
   const [getSelectedTopping, setSelectedTopping] = useState();
-  const { getCart, setCart, toppings } = useContext(CartContext);
-  const [getOrder, setOrder] = useState(getCart.order[0].pizzaToppings); // TODO: Load current pizza's toppings
+  const { toppingsData, getCart, addPizza, updatePizza } = useContext(
+    CartContext
+  );
+  const [getOrder, setOrder] = useState(getCart.order[pizzaIndex].toppings);
 
   const refCanvas = useRef(null);
 
@@ -56,7 +63,7 @@ const PizaaCanvas = props => {
     ctx.drawImage(imgPizza, 0, 0, canvas.width, canvas.height);
 
     getOrder.forEach(topping => {
-      const top = toppings.find(top => top.id === topping.id);
+      const top = toppingsData.find(top => top.id === topping.id);
       const img = new Image();
       img.src = top.atlas;
       img.onload = () => {
@@ -88,17 +95,18 @@ const PizaaCanvas = props => {
   };
 
   const handleFinish = () => {
-    const tempCart = getCart;
-    tempCart.order[0].pizzaToppings = getOrder;
-    setCart(tempCart);
-
+    if (newPizza) {
+      addPizza(pizzaName, getOrder);
+    } else {
+      updatePizza(pizzaId, pizzaName, getOrder);
+    }
     props.history.push({
       pathname: `/order/stage-3`
     });
   };
 
   const toppingButtons = filter => {
-    return toppings
+    return toppingsData
       .filter(top => top.category === filter)
       .map(topping => {
         return (
@@ -107,7 +115,7 @@ const PizaaCanvas = props => {
             topping={topping}
             count={getOrder.filter(top => top.id === topping.id).length}
             onClick={setSelectedTopping}
-            selected={topping.id === getSelectedTopping ? true : false}
+            selected={topping.id === getSelectedTopping}
             limit={toppingsLimit}
           />
         );
@@ -116,21 +124,6 @@ const PizaaCanvas = props => {
 
   return (
     <>
-      {/* Preload images */}
-      <div
-        style={{
-          height: 0,
-          width: 0,
-          overflow: "hidden",
-          margin: 0,
-          padding: 0
-        }}
-      >
-        {toppings.map(top => (
-          <img src={top.atlas} alt="" key={top.id} />
-        ))}
-      </div>
-
       <div className="d-flex flex-row">
         <div className="mr-2 flex-fill order-1">
           <h4>Vegetable</h4>

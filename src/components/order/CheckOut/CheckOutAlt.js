@@ -5,7 +5,7 @@ import { CartContext } from "../../../context/CartContext";
 import { withRouter } from "react-router-dom";
 
 const CheckOut = props => {
-  const { getCart, toppings } = useContext(CartContext);
+  const { toppingsData, getCart } = useContext(CartContext);
 
   const clickFinishOrder = () => {
     props.history.push({
@@ -31,8 +31,8 @@ const CheckOut = props => {
   const toppingCount = pizzaId => {
     let summery = [];
 
-    toppings.forEach(top => {
-      const sum = getCart.order[pizzaId].pizzaToppings.filter(
+    toppingsData.forEach(top => {
+      const sum = getCart.order[pizzaId].toppings.filter(
         pTop => pTop.id === top.id
       ).length;
       if (sum) {
