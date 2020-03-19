@@ -5,17 +5,14 @@ import { withRouter } from "react-router-dom";
 import ToppingButton from "./ToppingButton";
 
 const PizaaCanvas = props => {
-  const pizzaIndex = 0; // TODO: Load current pizza's index
   const newPizza = true; // TODO: Check if in edit mode
   const pizzaId = ""; // TODO: Load current pizza's ID
   const pizzaName = "Test Pizza"; // TODO: Get pizza's name
 
   const toppingsLimit = 100;
   const [getSelectedTopping, setSelectedTopping] = useState();
-  const { toppingsData, getCart, addPizza, updatePizza } = useContext(
-    CartContext
-  );
-  const [getOrder, setOrder] = useState(getCart.order[pizzaIndex].toppings);
+  const { toppingsData, addPizza, updatePizza } = useContext(CartContext);
+  const [getOrder, setOrder] = useState([]);
 
   const refCanvas = useRef(null);
 

@@ -7,7 +7,6 @@ import { CartContext } from "../../../context/CartContext";
 
 const Navigation = props => {
   const { getCart } = useContext(CartContext);
-  console.log(getCart);
 
   return (
     <Navbar

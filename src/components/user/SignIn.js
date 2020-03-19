@@ -4,23 +4,22 @@ import { withRouter } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
 const SignIn = props => {
+  const { login } = useContext(CartContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msgEmail, setMsgEmail] = useState("");
   const [msgPassword, setMsgPassword] = useState("");
-  const [DB] = useState(JSON.parse(localStorage.getItem("usersArr")));
-  const { getCart, setCart } = useContext(CartContext);
+
+  const [usersArr] = useState(JSON.parse(localStorage.getItem("usersArr")));
 
   const loginValidation = e => {
     e.preventDefault();
-    var user = DB.find(ele => ele.email === email);
+    var user = usersArr.find(user => user.email === email);
 
-    if (user !== undefined && password !== undefined && email !== undefined) {
+    if (user && password && email) {
       if (user.password === password) {
         //logged in
-        let tempCart = { ...getCart };
-        tempCart.currentUser = user;
-        setCart(tempCart);
+        login(user);
         setMsgEmail("");
         setMsgPassword("");
         props.history.push({

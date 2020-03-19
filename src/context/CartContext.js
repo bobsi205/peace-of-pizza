@@ -66,6 +66,21 @@ const CartContextProvider = props => {
     setCart(tCart);
   };
 
+  const emptyCart = () => {
+    const tCart = { ...getCart };
+    tCart.order = [];
+    setCart(tCart);
+  };
+
+  const login = user => {
+    setCart({ ...getCart, currentUser: user });
+  };
+
+  const logout = () => {
+    emptyCart();
+    setCart({ ...getCart, currentUser: {} });
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -73,7 +88,10 @@ const CartContextProvider = props => {
         getCart,
         addPizza,
         updatePizza,
-        removePizza
+        removePizza,
+        emptyCart,
+        login,
+        logout
       }}
     >
       {props.children}
