@@ -21,7 +21,7 @@ const Location = props => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    props.history.push("/order/stage-2");
+    props.history.push("/order/stage-1");
   };
   return (
     <div className="mx-auto my-4" style={{ maxWidth: "720px" }}>

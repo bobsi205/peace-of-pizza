@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Plain Pizza",
+        "text": "No toppings, Custom it as you like.",
+        "img": "/images/PizzaPreset/preset-plain.png",
+        "toppings": {}
+    },
+    {
+        "name": "Pizza Preset",
+        "text": "This is a pizza preset",
+        "img": "/images/PizzaPreset/preset-plain.png",
+        "toppings": {}
+    },
+    {
+        "name": "The D",
+        "text": "( ͡° ͜ʖ ͡°)",
+        "img": "/images/PizzaPreset/preset-plain.png",
+        "toppings": {}
+    }
+]
