@@ -8,7 +8,9 @@ import { withRouter } from "react-router-dom";
 const Location = props => {
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
+    props.addressValidation(results);
     props.setAddress(results[0].formatted_address);
+    props.setFullAddress(results);
   };
 
   return (
@@ -18,20 +20,22 @@ const Location = props => {
       onSelect={handleSelect}
     >
       {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-        <div>
+        <div style={{ position: "reletive" }}>
           <Form.Group>
             <Form.Label>Adress</Form.Label>
             <Form.Control
               type="text"
               className="flex-fill"
               required
-              {...getInputProps({ placeholder: "Adress" })}
+              {...getInputProps({ placeholder: "Address" })}
             />
           </Form.Group>
-          <Container className="d-flex justify-content-center flex-column">
+          <div
+            className="d-flex justify-content-center flex-column"
+            style={{ position: "absolute", width: "100%" }}
+          >
             {suggestions.map(suggestion => {
               const style = {
-                
                 backgroundColor: suggestion.active ? "var(--primary)" : "#fff"
               };
 
@@ -41,7 +45,7 @@ const Location = props => {
                 </div>
               );
             })}
-          </Container>
+          </div>
           <Form.Text className="text-muted">{props.errAddress}</Form.Text>
         </div>
       )}

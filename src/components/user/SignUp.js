@@ -13,6 +13,7 @@ const SignUp = props => {
   const [errPassword, setErrPassword] = useState("");
   const [errAddress, setErrAddress] = useState("");
   const [address, setAddress] = useState("");
+  const [fullAdress, setFullAddress] = useState();
   const [DB] = useState(JSON.parse(localStorage.getItem("usersArr")));
 
   const gotoLogin = () => {
@@ -29,7 +30,7 @@ const SignUp = props => {
       usernameFlag = 0,
       passwordFlag = 0,
       addressFlag = 0;
-    addressFlag = addressValidation();
+    addressFlag = addressValidation(fullAdress);
     usernameFlag = usernameValidation();
     emailFlag = emailValidation();
     passwordFlag = passwordValidation();
@@ -91,10 +92,12 @@ const SignUp = props => {
     return 0;
   };
 
-  const addressValidation = () => {
-    if (/israel/gim.test(address)) {
-      setErrAddress("");
-      return 1;
+  const addressValidation = addressData => {
+    if (/israel/gim.test(addressData[0].formatted_address)) {
+      if (addressData[0].address_components[0].types[0] === "street_number") {
+        setErrAddress("");
+        return 1;
+      } else setErrAddress("please choose a spasific address");
     } else setErrAddress("We only deliver inside israel");
     return 0;
   };
@@ -156,7 +159,10 @@ const SignUp = props => {
         <Location
           address={address}
           setAddress={setAddress}
+          fullAdress={fullAdress}
+          setFullAddress={setFullAddress}
           errAddress={errAddress}
+          addressValidation={addressValidation}
         />
 
         <Button type="submit" block>
