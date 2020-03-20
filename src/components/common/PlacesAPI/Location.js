@@ -2,7 +2,7 @@ import React from "react";
 import PlacesAutocomplete, {
   geocodeByAddress
 } from "react-places-autocomplete";
-import { Form, Container } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
 const Location = props => {
@@ -22,7 +22,7 @@ const Location = props => {
       {({ getInputProps, suggestions, getSuggestionItemProps }) => (
         <div style={{ position: "reletive" }}>
           <Form.Group>
-            <Form.Label>Adress</Form.Label>
+            <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
               className="flex-fill"
