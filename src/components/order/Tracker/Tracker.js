@@ -3,7 +3,8 @@ import { Container, ProgressBar } from "react-bootstrap";
 import { CartContext } from "../../../context/CartContext";
 
 const Tracker = () => {
-  const { getCart } = useContext(CartContext);
+  const { getCart, emptyCart } = useContext(CartContext);
+
   const [getProgress, setProgress] = useState([
     {
       label: "Order arrived",
@@ -47,10 +48,11 @@ const Tracker = () => {
     }
   ]);
   useEffect(() => {
+    emptyCart();
     setTimeout(() => {
       nextStage();
     }, 10000);
-  });
+  }, []);
   const nextStage = () => {
     let tempProgress = [...getProgress];
     let i = tempProgress.findIndex(bar => bar.status.variant === "success");
@@ -62,7 +64,6 @@ const Tracker = () => {
       setProgress(tempProgress);
     }
   };
-  console.log(getCart);
 
   return (
     <Container
