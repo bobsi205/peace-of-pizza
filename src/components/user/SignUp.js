@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import Location from "../common/PlacesAPI/Location";
 
 const SignUp = props => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,8 @@ const SignUp = props => {
   const [errUsername, setErrUsername] = useState("");
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
+  const [errAddress, setErrAddress] = useState("");
+  const [address, setAddress] = useState("");
   const [DB] = useState(JSON.parse(localStorage.getItem("usersArr")));
 
   const gotoLogin = () => {
@@ -17,17 +20,21 @@ const SignUp = props => {
       pathname: `/sign-in`
     });
   };
-
+  React.useEffect(() => {
+    console.log(DB.find(ele => ele.email === email) === undefined);
+  });
   const submitHandler = e => {
     e.preventDefault();
-    let eValidation = 0,
-      uValidation = 0,
-      pValidation = 0;
-    uValidation = usernameValidation();
-    eValidation = emailValidation();
-    pValidation = passwordValidation();
-    if (eValidation && uValidation && pValidation) {
-      if (!DB.find(ele => ele.email === email) !== undefined) {
+    let emailFlag = 0,
+      usernameFlag = 0,
+      passwordFlag = 0,
+      addressFlag = 0;
+    addressFlag = addressValidation();
+    usernameFlag = usernameValidation();
+    emailFlag = emailValidation();
+    passwordFlag = passwordValidation();
+    if (emailFlag && usernameFlag && passwordFlag && addressFlag) {
+      if (DB.find(ele => ele.email === email) === undefined) {
         registerData();
         props.history.push({
           pathname: `/sign-in`
@@ -41,7 +48,8 @@ const SignUp = props => {
     const user = {
       username: username,
       email: email,
-      password: password
+      password: password,
+      address: address
     };
     if (users) {
       localStorage.setItem("usersArr", JSON.stringify([...users, user]));
@@ -56,7 +64,10 @@ const SignUp = props => {
         setErrPassword("");
         return 1;
       } else setErrPassword("passwords does not match");
-    } else setErrPassword("password does not meet requirments");
+    } else
+      setErrPassword(
+        "password must contain 8-20 characters, capital letter, lower letter and a number"
+      );
     return 0;
   };
 
@@ -68,7 +79,7 @@ const SignUp = props => {
     ) {
       setErrUsername("");
       return 1;
-    } else setErrUsername("wrong username");
+    } else setErrUsername("username must be 6-20 characters long");
     return 0;
   };
 
@@ -76,10 +87,17 @@ const SignUp = props => {
     if (/^[a-zA-Z0-9.]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email)) {
       setErrEmail("");
       return 1;
-    } else setErrEmail("wrong email");
+    } else setErrEmail("please use a valid email");
     return 0;
   };
 
+  const addressValidation = () => {
+    if (/israel/gim.test(address)) {
+      setErrAddress("");
+      return 1;
+    } else setErrAddress("We only deliver inside israel");
+    return 0;
+  };
   return (
     <Container className="d-flex flex-row align-items-center">
       <Form
@@ -134,6 +152,12 @@ const SignUp = props => {
             onChange={e => setconfirmPass(e.target.value)}
           />
         </Form.Group>
+
+        <Location
+          address={address}
+          setAddress={setAddress}
+          errAddress={errAddress}
+        />
 
         <Button type="submit" block>
           Sign Up
