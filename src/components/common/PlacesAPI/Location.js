@@ -19,11 +19,11 @@ const Location = props => {
     >
       {({ getInputProps, suggestions, getSuggestionItemProps }) => (
         <div>
-          <Form.Group className="d-flex">
+          <Form.Group>
+            <Form.Label>Adress</Form.Label>
             <Form.Control
-              size="lg"
               type="text"
-              className="flex-fill m-1"
+              className="flex-fill"
               required
               {...getInputProps({ placeholder: "Adress" })}
             />
@@ -31,6 +31,7 @@ const Location = props => {
           <Container className="d-flex justify-content-center flex-column">
             {suggestions.map(suggestion => {
               const style = {
+                
                 backgroundColor: suggestion.active ? "var(--primary)" : "#fff"
               };
 
