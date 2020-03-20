@@ -52,6 +52,7 @@ const Tracker = () => {
     setTimeout(() => {
       nextStage();
     }, 10000);
+    // eslint-disable-next-line
   }, []);
   const nextStage = () => {
     let tempProgress = [...getProgress];
@@ -66,10 +67,7 @@ const Tracker = () => {
   };
 
   return (
-    <Container
-      className="d-flex justify-content-center flex-column"
-      // style={{ width: "75%" }}
-    >
+    <Container className="d-flex justify-content-center flex-column">
       <h5 className="mt-5 mb-3">
         {getCart.currentUser.username}, Your pizza is on the way!
       </h5>
