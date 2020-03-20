@@ -81,12 +81,9 @@ const SignUp = props => {
   };
 
   return (
-    <Container
-      className="d-flex flex-row align-items-center"
-      style={{ minHeight: "80vh" }}
-    >
+    <Container className="d-flex flex-row align-items-center">
       <Form
-        className="mx-auto w-100"
+        className="mx-auto my-5 w-100"
         style={{ maxWidth: "500px" }}
         onSubmit={e => submitHandler(e)}
       >
