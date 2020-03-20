@@ -23,28 +23,53 @@ const PizaaCanvas = props => {
   const addTopping = e => {
     const canvas = refCanvas.current;
     const canvasBound = canvas.getBoundingClientRect();
+    const point = {
+      x: e.clientX - canvasBound.left - 25,
+      y: e.clientY - canvasBound.top - 25
+    };
 
     const checkBounds = () => {
       const radius = Math.sqrt(
-        Math.pow(e.clientX - canvasBound.left - canvas.width / 2, 2) +
-          Math.pow(e.clientY - canvasBound.top - canvas.height / 2, 2)
+        Math.pow(point.x - canvas.width / 2 + 25, 2) +
+          Math.pow(point.y - canvas.height / 2 + 25, 2)
       );
-
       return radius < 140;
     };
 
-    if (
+    const checkOverlap = () => {
+      let closest = Infinity;
+      let closestIndex = 0;
+
+      getOrder.forEach((top, i) => {
+        let distance = Math.sqrt(
+          Math.pow(point.x - top.coords.x, 2) +
+            Math.pow(point.y - top.coords.y, 2)
+        );
+        if (distance < closest) {
+          closest = distance;
+          closestIndex = i;
+        }
+      });
+
+      return { distance: closest, index: closestIndex };
+    };
+
+    if (!getSelectedTopping) {
+      let over = checkOverlap();
+      if (over.distance < 10) {
+        const tOrder = [...getOrder];
+        tOrder.splice(over.index, 1);
+        setOrder(tOrder);
+      }
+    } else if (
       checkBounds() &&
-      getSelectedTopping &&
-      getOrder.length < toppingsLimit
+      getOrder.length < toppingsLimit &&
+      checkOverlap().distance > 10
     ) {
       const newTopping = {
         id: getSelectedTopping,
         index: Math.floor(Math.random() * 5),
-        coords: {
-          x: e.clientX - 25 - canvasBound.left,
-          y: e.clientY - 25 - canvasBound.top
-        }
+        coords: point
       };
 
       setOrder([...getOrder, newTopping]);
@@ -79,17 +104,17 @@ const PizaaCanvas = props => {
     });
   };
 
-  const handleUndo = () => {
-    if (getOrder.length > 0) {
-      const tempOrder = [...getOrder];
-      tempOrder.pop();
-      setOrder(tempOrder);
-    }
-  };
+  // const handleUndo = () => {
+  //   if (getOrder.length > 0) {
+  //     const tempOrder = [...getOrder];
+  //     tempOrder.pop();
+  //     setOrder(tempOrder);
+  //   }
+  // };
 
-  const handleClear = () => {
-    setOrder([]);
-  };
+  // const handleClear = () => {
+  //   setOrder([]);
+  // };
 
   const handleFinish = () => {
     if (newPizza) {
@@ -165,18 +190,20 @@ const PizaaCanvas = props => {
           />
 
           <div className="d-flex">
-            <Button size="lg" onClick={() => handleUndo()}>
-              Undo
+            <Button
+              size="lg"
+              variant="secondary"
+              onClick={() => setSelectedTopping()}
+            >
+              Remove Topping
             </Button>
             <Button
               size="lg"
-              className="flex-fill mx-2"
+              variant="secondary"
+              className="flex-fill ml-2"
               onClick={() => handleFinish()}
             >
               Finish
-            </Button>
-            <Button size="lg" onClick={() => handleClear()}>
-              Clear
             </Button>
           </div>
         </span>
