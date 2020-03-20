@@ -104,17 +104,17 @@ const PizaaCanvas = props => {
     });
   };
 
-  // const handleUndo = () => {
-  //   if (getOrder.length > 0) {
-  //     const tempOrder = [...getOrder];
-  //     tempOrder.pop();
-  //     setOrder(tempOrder);
-  //   }
-  // };
+  const handleUndo = () => {
+    if (getOrder.length > 0) {
+      const tempOrder = [...getOrder];
+      tempOrder.pop();
+      setOrder(tempOrder);
+    }
+  };
 
-  // const handleClear = () => {
-  //   setOrder([]);
-  // };
+  const handleClear = () => {
+    setOrder([]);
+  };
 
   const handleFinish = () => {
     if (newPizza) {
@@ -170,8 +170,13 @@ const PizaaCanvas = props => {
             </span>
           </>
         ) : (
-          <>
-            <Button onClick={() => setSmShow(true)}>Small modal</Button>
+          <div className="d-flex justify-content-center">
+            <Button
+              onClick={() => setSmShow(true)}
+              className="align-self-center"
+            >
+              Select Topping
+            </Button>
 
             <Modal
               size="sm"
@@ -181,7 +186,7 @@ const PizaaCanvas = props => {
             >
               <Modal.Header closeButton>
                 <Modal.Title id="example-modal-sizes-title-sm">
-                  Small Modal
+                  Toppings select
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
@@ -203,7 +208,7 @@ const PizaaCanvas = props => {
                 </span>
               </Modal.Body>
             </Modal>
-          </>
+          </div>
         )}
         <span className="p-lg-4 order-2">
           <canvas
@@ -212,7 +217,6 @@ const PizaaCanvas = props => {
               maxHeight: "400px",
               width: "100%",
               maxWidth: "400px"
-              // margin: "10px 25px"
             }}
             ref={refCanvas}
             width="400"
@@ -241,7 +245,25 @@ const PizaaCanvas = props => {
             <Button
               size="lg"
               variant="secondary"
+              className="ml-2"
+              onClick={() => handleUndo()}
+            >
+              Undo
+            </Button>
+            <Button
+              size="lg"
+              variant="secondary"
               className="flex-fill ml-2"
+              onClick={() => handleClear()}
+            >
+              Clear
+            </Button>
+          </div>
+          <div className="d-flex pt-2">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="flex-fill"
               onClick={() => handleFinish()}
             >
               Finish
