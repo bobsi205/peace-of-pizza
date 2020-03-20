@@ -27,7 +27,7 @@ const OrderGuide = () => {
         backgroundImage: `url(${imgBackground})`,
         backgroundSize: "auto 100%",
         backgroundPosition: "50% 50%",
-        padding: "120px"
+        padding: "150px 0"
       }}
     >
       <Container className="text-white text-center">

@@ -18,10 +18,10 @@ const Navigation = props => {
       }}
     >
       <Container>
-        <Navbar.Toggle aria-controls="navbar" className="ml-auto" />
+        <Navbar.Toggle aria-controls="navbar" className="ml-auto invertable" />
 
         <Navbar.Collapse id="navbar">
-          <Nav className="d-flex align-items-md-center">
+          <Nav>
             <Nav.Link as={Link} to="/" className="mx-4">
               <strong>Home</strong>
             </Nav.Link>
@@ -29,20 +29,21 @@ const Navigation = props => {
 
           {getCart.currentUser ? (
             <>
-              <Nav className="d-flex align-items-md-center">
+              <Nav>
                 <Navbar.Text className="mx-4">
-                  Hello {getCart.currentUser.username}
+                  Hello <strong>{getCart.currentUser.username}</strong>
                 </Navbar.Text>
               </Nav>
 
-              <Nav className="ml-auto d-flex align-items-md-center">
-                <Nav.Link
-                  as={Link}
-                  to="/order/stage-3"
-                  className="d-flex align-items-center mx-4"
-                >
+              <Nav className="ml-auto">
+                <Nav.Link as={Link} to="/order/stage-3" className="mx-4">
                   Cart
-                  <img src={imgCart} alt="Cart" height="32" className="ml-2" />
+                  <img
+                    src={imgCart}
+                    alt="Cart"
+                    height="32"
+                    className="ml-2 invertable"
+                  />
                 </Nav.Link>
                 <Nav.Link as={Link} to="/sign-out" className="mx-4">
                   Sign-Out
@@ -51,7 +52,7 @@ const Navigation = props => {
             </>
           ) : (
             <>
-              <Nav className="ml-auto d-flex align-items-md-center"></Nav>
+              <Nav className="ml-auto"></Nav>
               <Nav.Link as={Link} to="/sign-in" className="mx-4">
                 Sign-In
               </Nav.Link>

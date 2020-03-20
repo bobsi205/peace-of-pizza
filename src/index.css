@@ -25,7 +25,7 @@ p {
   color: white !important;
 }
 
-.home-navbar img {
+.home-navbar .invertable {
   filter: invert();
 }
 
