@@ -25,6 +25,10 @@ p {
   color: white !important;
 }
 
+.home-navbar img {
+  filter: invert();
+}
+
 /* Buttons */
 .btn {
   color: var(--white);
