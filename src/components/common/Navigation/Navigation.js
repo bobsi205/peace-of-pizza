@@ -42,13 +42,7 @@ const Navigation = props => {
                   className="d-flex align-items-center mx-4"
                 >
                   Cart
-                  <img
-                    src={imgCart}
-                    alt="Cart"
-                    height="32"
-                    className="ml-2"
-                    style={props.noBackground ? {} : { filter: "invert()" }}
-                  />
+                  <img src={imgCart} alt="Cart" height="32" className="ml-2" />
                 </Nav.Link>
                 <Nav.Link as={Link} to="/sign-out" className="mx-4">
                   Sign-Out
