@@ -1,20 +1,23 @@
 [
     {
+        "id": "plain-pizza",
         "name": "Plain Pizza",
         "text": "No toppings, Custom it as you like.",
         "img": "/images/PizzaPreset/preset-plain.png",
-        "toppings": {}
+        "toppings": []
     },
     {
+        "id": "preset-id",
         "name": "Pizza Preset",
         "text": "This is a pizza preset",
         "img": "/images/PizzaPreset/preset-plain.png",
-        "toppings": {}
+        "toppings": []
     },
     {
+        "id": "the-d",
         "name": "The D",
         "text": "( ͡° ͜ʖ ͡°)",
         "img": "/images/PizzaPreset/preset-plain.png",
-        "toppings": {}
+        "toppings": []
     }
 ]

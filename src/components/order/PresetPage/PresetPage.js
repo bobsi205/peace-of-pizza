@@ -15,6 +15,7 @@ const PresetPage = props => {
         {presetData.map((preset, i) => (
           <Link
             key={i}
+            to={"/order/stage-2/" + preset.id}
             className="d-block bg-dark my-4 p-4 rounded shadow"
             style={{
               height: "150px",
@@ -42,7 +43,13 @@ const PresetPage = props => {
         {getCart.order.map(pizza => (
           <ListGroup.Item key={pizza.id} className="d-flex">
             {pizza.name}
-            <Button size="sm" variant="secondary" className="ml-auto">
+            <Button
+              as={Link}
+              to={"/order/stage-2/" + pizza.id}
+              size="sm"
+              variant="secondary"
+              className="ml-auto"
+            >
               Edit
             </Button>
           </ListGroup.Item>

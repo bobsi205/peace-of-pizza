@@ -20,7 +20,7 @@ const App = () => {
         <Route exact path={"/sign-in"} component={() => <SignIn />} />
         <Route exact path={"/sign-out"} component={() => <SignOut />} />
         <Route exact path={"/order/stage-1"} component={() => <PresetPage />} />
-        <Route exact path={"/order/stage-2"} component={() => <Builder />} />
+        <Route exact path={"/order/stage-2/:id"} component={() => <Builder />} />
         <Route exact path={"/order/stage-3"} component={() => <CheckOut />} />
         <Route exact path={"/order/stage-4"} component={() => <Tracker />} />
 
