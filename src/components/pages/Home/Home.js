@@ -1,6 +1,6 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-
+import { Container, Button } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 import Navigation from "../../common/Navigation/Navigation";
 import Reviews from "./Review/Reviews";
 import OrderGuide from "./OrderGuide/OrderGuide";
@@ -8,7 +8,7 @@ import Social from "./Social/Social";
 
 import imgBanner from "./images/banner-pizza-dim.jpg";
 
-const Home = () => {
+const Home = props => {
   const styleHeader = {
     backgroundImage: `url(${imgBanner})`,
     backgroundSize: "cover",
@@ -20,7 +20,6 @@ const Home = () => {
     <>
       <header className="bg-light" style={styleHeader}>
         <Navigation noBackground />
-
         <Container className="text-center py-4">
           <img
             src="\logo256.png"
@@ -28,8 +27,16 @@ const Home = () => {
             height="256"
             className="m-4"
           />
-
         </Container>
+        <Button
+          variant="primary"
+          size="lg"
+          type="submit"
+          className="text-nowrap m-1"
+          onClick={() => props.history.push("/order/stage-1")}
+        >
+          Feed Me!
+        </Button>
       </header>
 
       <Reviews />
@@ -39,4 +46,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withRouter(Home);
