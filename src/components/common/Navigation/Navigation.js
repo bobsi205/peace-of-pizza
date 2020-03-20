@@ -38,11 +38,17 @@ const Navigation = props => {
               <Nav className="ml-auto d-flex align-items-md-center">
                 <Nav.Link
                   as={Link}
-                  to="/cart"
+                  to="/order/stage-3"
                   className="d-flex align-items-center mx-4"
                 >
                   Cart
-                  <img src={imgCart} alt="Cart" height="32" className="ml-4" />
+                  <img
+                    src={imgCart}
+                    alt="Cart"
+                    height="32"
+                    className="ml-2"
+                    style={props.noBackground ? {} : { filter: "invert()" }}
+                  />
                 </Nav.Link>
                 <Nav.Link as={Link} to="/sign-out" className="mx-4">
                   Sign-Out
