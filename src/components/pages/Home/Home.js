@@ -5,7 +5,6 @@ import Navigation from "../../common/Navigation/Navigation";
 import Reviews from "./Review/Reviews";
 import OrderGuide from "./OrderGuide/OrderGuide";
 import Social from "./Social/Social";
-import Location from "../../common/PlacesAPI/Location";
 
 import imgBanner from "./images/banner-pizza-dim.jpg";
 
@@ -30,7 +29,6 @@ const Home = () => {
             className="m-4"
           />
 
-          <Location />
         </Container>
       </header>
 
