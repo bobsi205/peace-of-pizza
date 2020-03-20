@@ -56,40 +56,47 @@ const CheckOut = props => {
 
   return (
     <Container
-      className="d-flex justify-content-center align-items-center d-flex flex-column text-white table-responsive"
+      className="d-flex justify-content-between flex-column text-white"
       style={{
         backgroundImage: `url(${backgroundImg})`,
         backgroundSize: "cover",
-        backgroundPosition: "50% 50%"
+        backgroundPosition: "50% 50%",
+        height: "100%"
       }}
     >
-      <h1 className="display-4">Order Summery</h1>
-      <table className="table text-white ">
-        <thead>
-          <tr>
-            <th scope="col">Pizza</th>
-            <th scope="col">Toppings</th>
-            <th scope="col">Cost</th>
-            <th scope="col">EDIT</th>
-          </tr>
-        </thead>
-        <tbody>
-          {getCart.order.map((pizza, index) => {
-            console.log(pizza, pizza.name);
+      <div className="d-flex align-items-center flex-column text-white table-responsive">
+        <h1 className="display-4">Order Summery</h1>
+        <table className="table text-white ">
+          <thead>
+            <tr>
+              <th scope="col">Pizza</th>
+              <th scope="col">Toppings</th>
+              <th scope="col">Cost</th>
+              <th scope="col">EDIT</th>
+            </tr>
+          </thead>
+          <tbody>
+            {getCart.order.map((pizza, index) => {
+              console.log(pizza, pizza.name);
 
-            return (
-              <Row
-                pizza={pizza}
-                pizzaId={index}
-                cost={cost[index]}
-                toppingCount={toppingCount}
-              />
-            );
-          })}
-        </tbody>
-      </table>
-      <h2>Total cost: {totalCost(cost).toFixed(2)} $</h2>
-      <Button onClick={() => clickFinishOrder()}>Order</Button>
+              return (
+                <Row
+                  pizza={pizza}
+                  pizzaId={index}
+                  cost={cost[index]}
+                  toppingCount={toppingCount}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div className="d-flex flex-column align-items-center m-4">
+        <h2>Total cost: {totalCost(cost).toFixed(2)} $</h2>
+        <Button style={{ minWidth: "40%" }} onClick={() => clickFinishOrder()}>
+          Order
+        </Button>
+      </div>
     </Container>
   );
 };
