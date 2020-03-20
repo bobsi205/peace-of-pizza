@@ -1,48 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, ProgressBar } from "react-bootstrap";
+import { CartContext } from "../../../context/CartContext";
 
 const Tracker = () => {
+  const { getCart } = useContext(CartContext);
   const [getProgress, setProgress] = useState([
     {
       label: "Order arrived",
       status: {
         now: 40,
-        variant: "success"
+        variant: "success",
+        fontSize: "15pt"
       }
     },
     {
       label: "Making",
       status: {
         now: 15,
-        variant: "dark"
+        variant: "dark",
+        fontSize: "10pt"
       }
     },
     {
       label: "Oven",
       status: {
         now: 15,
-        variant: "dark"
+        variant: "dark",
+        fontSize: "10pt"
       }
     },
     {
       label: "Packing",
       status: {
         now: 15,
-        variant: "dark"
+        variant: "dark",
+        fontSize: "10pt"
       }
     },
     {
       label: "Delivery",
       status: {
         now: 15,
-        variant: "dark"
+        variant: "dark",
+        fontSize: "10pt"
       }
     }
   ]);
   useEffect(() => {
     setTimeout(() => {
       nextStage();
-    }, 3000);
+    }, 10000);
   });
   const nextStage = () => {
     let tempProgress = [...getProgress];
@@ -55,24 +62,35 @@ const Tracker = () => {
       setProgress(tempProgress);
     }
   };
-  return (
-    <Container className="d-flex justify-content-center flex-column">
-      <h2>Great! Your pizza is on the way!</h2>
+  console.log(getCart);
 
+  return (
+    <Container
+      className="d-flex justify-content-center flex-column"
+      // style={{ width: "75%" }}
+    >
+      <h5 className="mt-5 mb-3">
+        {getCart.currentUser.username}, Your pizza is on the way!
+      </h5>
+      <p> now all you need to do is sit and wait </p>
+      <p>while our machine wheeles are grinding to make your perfect pizza</p>
       <Container
-        className="d-flex justify-content-center"
-        style={{ width: "100%" }}
+        className="d-flex justify-content-center rounded border bg-light align-items-center"
+        style={{
+          width: "100%",
+          height: "150px"
+        }}
       >
         <ProgressBar
           className="my-2 flex-fill"
           style={{
-            height: "50px",
-            fontSize: "12pt"
+            height: "50px"
           }}
         >
           {getProgress.map((bar, index) => {
             return (
               <ProgressBar
+                style={{ fontSize: bar.fontSize }}
                 key={index}
                 now={bar.status.now}
                 label={bar.label}
@@ -82,7 +100,6 @@ const Tracker = () => {
           })}
         </ProgressBar>
       </Container>
-      <input type="button" onClick={() => nextStage()} value="next stage" />
     </Container>
   );
 };
