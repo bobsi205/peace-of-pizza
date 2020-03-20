@@ -7,7 +7,7 @@ export const CartContext = createContext();
 
 const CartContextProvider = props => {
   const [getCart, setCart] = useState({
-    currentUser: {},
+    currentUser: "",
     basePrice: 50,
     order: []
   });
@@ -78,7 +78,7 @@ const CartContextProvider = props => {
 
   const logout = () => {
     emptyCart();
-    setCart({ ...getCart, currentUser: {} });
+    setCart({ ...getCart, currentUser: "" });
   };
 
   return (
