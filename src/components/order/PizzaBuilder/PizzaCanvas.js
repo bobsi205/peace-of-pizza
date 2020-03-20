@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from "react";
-import { Button, ProgressBar } from "react-bootstrap";
+import { Button, ProgressBar, Modal } from "react-bootstrap";
 import { CartContext } from "../../../context/CartContext";
 import { withRouter } from "react-router-dom";
 import ToppingButton from "./ToppingButton";
@@ -13,6 +13,7 @@ const PizaaCanvas = props => {
   const [getSelectedTopping, setSelectedTopping] = useState();
   const { toppingsData, addPizza, updatePizza } = useContext(CartContext);
   const [getOrder, setOrder] = useState([]);
+  const [smShow, setSmShow] = useState(false);
 
   const refCanvas = useRef(null);
 
@@ -77,7 +78,6 @@ const PizaaCanvas = props => {
   };
 
   const updateCanvas = () => {
-    console.log("Canvas updated");
     const canvas = refCanvas.current;
     const ctx = canvas.getContext("2d");
 
@@ -95,8 +95,8 @@ const PizaaCanvas = props => {
           0,
           50,
           50,
-          topping.coords.x,
-          topping.coords.y,
+          topping.coords.x * (400 / canvas.clientWidth),
+          topping.coords.y * (400 / canvas.clientHeight),
           50,
           50
         );
@@ -136,7 +136,10 @@ const PizaaCanvas = props => {
             key={topping.id}
             topping={topping}
             count={getOrder.filter(top => top.id === topping.id).length}
-            onClick={setSelectedTopping}
+            onClick={() => {
+              setSelectedTopping(topping.id);
+              setSmShow(false);
+            }}
             selected={topping.id === getSelectedTopping}
             limit={toppingsLimit}
           />
@@ -146,32 +149,70 @@ const PizaaCanvas = props => {
 
   return (
     <>
-      <div className="d-flex flex-row">
-        <div className="mr-2 flex-fill order-1">
-          <h4>Vegetable</h4>
-          {toppingButtons("Vegetable")}
-        </div>
+      <div className="d-lg-flex flex-row">
+        {window.innerWidth > 767 ? (
+          <>
+            <div className="mr-2 flex-fill order-1">
+              <h4>Vegetable</h4>
+              {toppingButtons("Vegetable")}
+            </div>
 
-        <span className="flex-fill d-flex flex-column order-3">
-          <div className="mr-2">
-            <h4>Dairy</h4>
-            {toppingButtons("Dairy")}
-          </div>
+            <span className="flex-fill d-flex flex-column order-3">
+              <div className="mr-2">
+                <h4>Dairy</h4>
+                {toppingButtons("Dairy")}
+              </div>
 
-          <div className="mr-2">
-            <h4>Meats</h4>
-            {toppingButtons("Meats")}
-          </div>
-        </span>
+              <div className="mr-2">
+                <h4>Meats</h4>
+                {toppingButtons("Meats")}
+              </div>
+            </span>
+          </>
+        ) : (
+          <>
+            <Button onClick={() => setSmShow(true)}>Small modal</Button>
 
-        <span className="p-4 order-2">
+            <Modal
+              size="sm"
+              show={smShow}
+              onHide={() => setSmShow(false)}
+              aria-labelledby="example-modal-sizes-title-sm"
+            >
+              <Modal.Header closeButton>
+                <Modal.Title id="example-modal-sizes-title-sm">
+                  Small Modal
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="mr-2 flex-fill order-1">
+                  <h4>Vegetable</h4>
+                  {toppingButtons("Vegetable")}
+                </div>
+
+                <span className="flex-fill d-flex flex-column order-3">
+                  <div className="mr-2">
+                    <h4>Dairy</h4>
+                    {toppingButtons("Dairy")}
+                  </div>
+
+                  <div className="mr-2">
+                    <h4>Meats</h4>
+                    {toppingButtons("Meats")}
+                  </div>
+                </span>
+              </Modal.Body>
+            </Modal>
+          </>
+        )}
+        <span className="p-lg-4 order-2">
           <canvas
             style={{
-              height: "400px",
-              minHeight: "400px",
-              width: "400px",
-              minWidth: "400px",
-              margin: "10px 25px"
+              height: "100%",
+              maxHeight: "400px",
+              width: "100%",
+              maxWidth: "400px"
+              // margin: "10px 25px"
             }}
             ref={refCanvas}
             width="400"
