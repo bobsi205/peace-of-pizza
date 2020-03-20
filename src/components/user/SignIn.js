@@ -30,7 +30,7 @@ const SignIn = props => {
         setMsgEmail("");
       }
     } else {
-      setMsgEmail("wrong email");
+      setMsgEmail("User does not exist");
       setMsgPassword("");
     }
   };
