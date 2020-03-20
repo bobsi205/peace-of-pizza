@@ -18,7 +18,7 @@ const Navigation = props => {
       }}
     >
       <Container>
-        <Navbar.Toggle aria-controls="navbar" className="ml-auto" />
+        <Navbar.Toggle aria-controls="navbar" className="ml-auto invertable" />
 
         <Navbar.Collapse id="navbar">
           <Nav className="d-flex align-items-md-center">
@@ -31,7 +31,7 @@ const Navigation = props => {
             <>
               <Nav className="d-flex align-items-md-center">
                 <Navbar.Text className="mx-4">
-                  Hello {getCart.currentUser.username}
+                  Hello <strong>{getCart.currentUser.username}</strong>
                 </Navbar.Text>
               </Nav>
 
@@ -42,7 +42,7 @@ const Navigation = props => {
                   className="d-flex align-items-center mx-4"
                 >
                   Cart
-                  <img src={imgCart} alt="Cart" height="32" className="ml-2" />
+                  <img src={imgCart} alt="Cart" height="32" className="ml-2 invertable" />
                 </Nav.Link>
                 <Nav.Link as={Link} to="/sign-out" className="mx-4">
                   Sign-Out
