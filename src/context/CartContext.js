@@ -8,7 +8,7 @@ export const CartContext = createContext();
 const CartContextProvider = props => {
   const [getCart, setCart] = useState({
     currentUser: "",
-    basePrice: 50,
+    basePrice: 15,
     order: []
   });
 
