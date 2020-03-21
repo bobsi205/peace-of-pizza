@@ -61,7 +61,7 @@ const CheckOut = props => {
         backgroundImage: `url(${backgroundImg})`,
         backgroundSize: "cover",
         backgroundPosition: "50% 50%",
-        height: "100%"
+        minHeight: "75vh"
       }}
     >
       <div className="d-flex align-items-center flex-column text-white table-responsive">

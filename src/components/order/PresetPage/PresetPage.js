@@ -17,7 +17,11 @@ const PresetPage = props => {
             key={i}
             to={{
               pathname: "/order/stage-2/" + preset.id,
-              state: { newPizza: true }
+              state: {
+                newPizza: true,
+                toppings: preset.toppings,
+                pizzaName: preset.name
+              }
             }}
             className="d-block bg-dark my-4 p-4 rounded shadow"
             style={{

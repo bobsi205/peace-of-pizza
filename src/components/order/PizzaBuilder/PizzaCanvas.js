@@ -7,7 +7,7 @@ import ToppingButton from "./ToppingButton";
 const PizaaCanvas = props => {
   const newPizza = props.location.state.newPizza;
   const pizzaId = props.match.params.id;
-  const pizzaName = "Test Pizza"; // TODO: Get pizza's name
+  const pizzaName = props.location.state.pizzaName;
 
   const toppingsLimit = 100;
   const [getSelectedTopping, setSelectedTopping] = useState();
@@ -24,7 +24,7 @@ const PizaaCanvas = props => {
   imgPizza.onload = () => updateCanvas();
 
   React.useEffect(() => {
-    console.log(newPizza);
+    console.log(props.location.state.toppings);
 
     if (!newPizza) {
       getCart.order.map(pizza => {
@@ -33,6 +33,8 @@ const PizaaCanvas = props => {
         }
         return false;
       });
+    } else {
+      setOrder(props.location.state.toppings);
     }
     // eslint-disable-next-line
   }, []);
@@ -130,6 +132,8 @@ const PizaaCanvas = props => {
   };
 
   const handleFinish = () => {
+    console.log(JSON.stringify(getOrder));
+
     if (newPizza) {
       addPizza(pizzaName, getOrder);
     } else {
