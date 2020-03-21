@@ -48,12 +48,12 @@ const Tracker = () => {
     }
   ]);
   useEffect(() => {
-    emptyCart();
     setTimeout(() => {
+      emptyCart();
       nextStage();
     }, 10000);
     // eslint-disable-next-line
-  }, []);
+  });
   const nextStage = () => {
     let tempProgress = [...getProgress];
     let i = tempProgress.findIndex(bar => bar.status.variant === "success");

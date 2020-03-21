@@ -51,6 +51,7 @@ const CartContextProvider = props => {
     tCart.order.map((pizza, index) => {
       console.log(pizza);
       if (pizza.id === id) pizzaIndex = index;
+      return false;
     });
     console.log(pizzaIndex);
 

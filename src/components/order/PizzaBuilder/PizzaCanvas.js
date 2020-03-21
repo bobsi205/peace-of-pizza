@@ -34,6 +34,7 @@ const PizaaCanvas = props => {
         return false;
       });
     }
+    // eslint-disable-next-line
   }, []);
   const addTopping = e => {
     const canvas = refCanvas.current;
