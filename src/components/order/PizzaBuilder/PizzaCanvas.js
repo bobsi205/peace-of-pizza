@@ -57,7 +57,7 @@ const PizaaCanvas = props => {
 
     if (!getSelectedTopping) {
       let over = checkOverlap();
-      if (over.distance < 10) {
+      if (over.distance < 15) {
         const tOrder = [...getOrder];
         tOrder.splice(over.index, 1);
         setOrder(tOrder);
@@ -88,19 +88,17 @@ const PizaaCanvas = props => {
       const top = toppingsData.find(top => top.id === topping.id);
       const img = new Image();
       img.src = top.atlas;
-      img.onload = () => {
-        ctx.drawImage(
-          img,
-          topping.index * 50,
-          0,
-          50,
-          50,
-          topping.coords.x * (400 / canvas.clientWidth),
-          topping.coords.y * (400 / canvas.clientHeight),
-          50,
-          50
-        );
-      };
+      ctx.drawImage(
+        img,
+        topping.index * 50,
+        0,
+        50,
+        50,
+        topping.coords.x * (400 / canvas.clientWidth),
+        topping.coords.y * (400 / canvas.clientHeight),
+        50,
+        50
+      );
     });
   };
 
@@ -149,6 +147,12 @@ const PizaaCanvas = props => {
 
   return (
     <>
+      {/* Preload images */}
+      <div style={{ width: "0", height: "0", overflow: "hidden" }}>
+        {toppingsData.map(top => (
+          <img src={top.atlas} alt="" />
+        ))}
+      </div>
       <div className="d-lg-flex flex-row">
         {window.innerWidth > 767 ? (
           <>

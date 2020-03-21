@@ -18,9 +18,9 @@ const Navigation = props => {
       }}
     >
       <Container>
-        <Navbar.Toggle aria-controls="navbar" className="ml-auto invertable" />
+        <Navbar.Toggle className="ml-auto invertable" />
 
-        <Navbar.Collapse id="navbar">
+        <Navbar.Collapse>
           <Nav>
             <Nav.Link as={Link} to="/" className="mx-4">
               <strong>Home</strong>
@@ -51,15 +51,14 @@ const Navigation = props => {
               </Nav>
             </>
           ) : (
-            <>
-              <Nav className="ml-auto"></Nav>
+            <Nav className="ml-auto">
               <Nav.Link as={Link} to="/sign-in" className="mx-4">
                 Sign-In
               </Nav.Link>
               <Nav.Link as={Link} to="/sign-up" className="mx-4">
                 Sign-Up
               </Nav.Link>
-            </>
+            </Nav>
           )}
         </Navbar.Collapse>
       </Container>
