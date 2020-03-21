@@ -43,9 +43,7 @@ const SignUp = props => {
       } else setErrEmail("Email already exist");
     }
   };
-  React.useEffect(() => {
-    console.log(DB);
-  });
+
   const registerData = () => {
     const users = JSON.parse(localStorage.getItem("usersArr"));
     const user = {
