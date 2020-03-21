@@ -35,10 +35,7 @@ const SignUp = props => {
     emailFlag = emailValidation();
     passwordFlag = passwordValidation();
     if (emailFlag && usernameFlag && passwordFlag && addressFlag) {
-      if (
-        DB === undefined ||
-        DB.find(ele => ele.email === email) === undefined
-      ) {
+      if (DB === null || DB.find(ele => ele.email === email) === undefined) {
         registerData();
         props.history.push({
           pathname: `/`
@@ -46,7 +43,9 @@ const SignUp = props => {
       } else setErrEmail("Email already exist");
     }
   };
-
+  React.useEffect(() => {
+    console.log(DB);
+  });
   const registerData = () => {
     const users = JSON.parse(localStorage.getItem("usersArr"));
     const user = {
