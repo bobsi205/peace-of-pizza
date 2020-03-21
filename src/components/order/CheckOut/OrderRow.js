@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 const OrderRow = props => {
   return (
     <tr>
-      <th scope="row">{props.pizzaNumber + 1}</th>
+      <th scope="row">{props.pizza.name}</th>
       <td>
         {props.toppingCount(props.pizzaNumber).map(topp => {
           return (
