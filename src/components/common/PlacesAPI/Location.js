@@ -14,6 +14,7 @@ const Location = props => {
   };
   var size;
   React.useEffect(() => {
+    // eslint-disable-next-line
     size = document.getElementById("address").getBoundingClientRect().width;
   });
 
