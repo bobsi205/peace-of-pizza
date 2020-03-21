@@ -9,7 +9,7 @@ class Layout extends Component {
   }
   render() {
     return (
-      <div className="d-flex flex-column" style={{ height: "100vh" }}>
+      <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
         {this.props.route === "/" ? "" : <Navigation />}
         <div className="flex-fill">{this.props.children}</div>
         <Footer />
