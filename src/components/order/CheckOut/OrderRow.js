@@ -15,9 +15,11 @@ const OrderRow = props => {
           );
         })}
       </td>
-      <td style={{ fontWeight: "bold" }}>{props.cost.toFixed(2)} $</td>
-      <td>
+      <td style={{ fontWeight: "bold" }}>{props.cost.toFixed(1)}$</td>
+      <td className="d-flex flex-column justify-content-center">
         <Button
+          className="mr-2"
+          variant="secondary"
           onClick={() => {
             props.history.push({
               pathname: "/order/stage-2/" + props.pizzaId,
@@ -25,8 +27,16 @@ const OrderRow = props => {
             });
           }}
         >
-          {" "}
           EDIT
+        </Button>
+        <Button
+          className="mr-2"
+          variant="outline-danger"
+          onClick={() => {
+            props.removePizza(props.pizza.id);
+          }}
+        >
+          Delete
         </Button>
       </td>
     </tr>

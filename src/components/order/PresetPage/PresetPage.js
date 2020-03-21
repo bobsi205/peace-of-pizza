@@ -7,7 +7,7 @@ import { CartContext } from "../../../context/CartContext";
 import presetData from "../../../data/pizzaPresets.json";
 
 const PresetPage = props => {
-  const { getCart } = useContext(CartContext);
+  const { getCart, removePizza } = useContext(CartContext);
   React.useEffect(() => {
     const Btn = document.getElementById("finishOrder");
     if (getCart.order[0] !== undefined) {
@@ -73,9 +73,17 @@ const PresetPage = props => {
               }}
               size="sm"
               variant="secondary"
-              className="ml-auto"
+              className="ml-auto mr-1"
             >
               Edit
+            </Button>
+            <Button
+              size="sm"
+              variant="secondary"
+              className="mr-1"
+              onClick={() => removePizza(pizza.id)}
+            >
+              Delete
             </Button>
           </ListGroup.Item>
         ))}

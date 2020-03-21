@@ -6,7 +6,7 @@ import Row from "./OrderRow";
 import { withRouter } from "react-router-dom";
 
 const CheckOut = props => {
-  const { toppingsData, getCart } = useContext(CartContext);
+  const { toppingsData, getCart, removePizza } = useContext(CartContext);
 
   const clickFinishOrder = () => {
     props.history.push({
@@ -65,14 +65,14 @@ const CheckOut = props => {
       }}
     >
       <div className="d-flex align-items-center flex-column text-white table-responsive">
-        <h1 className="display-4">Order Summery</h1>
+        <h2>Order Summery</h2>
         <table className="table text-white ">
           <thead>
             <tr>
               <th scope="col">Pizza</th>
               <th scope="col">Toppings</th>
               <th scope="col">Cost</th>
-              <th scope="col">EDIT</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -86,6 +86,7 @@ const CheckOut = props => {
                   pizzaId={pizza.id}
                   cost={cost[index]}
                   toppingCount={toppingCount}
+                  removePizza={removePizza}
                 />
               );
             })}
@@ -93,7 +94,7 @@ const CheckOut = props => {
         </table>
       </div>
       <div className="d-flex flex-column align-items-center m-4">
-        <h2>Total cost: {totalCost(cost).toFixed(2)} $</h2>
+        <h2>Total cost: {totalCost(cost).toFixed(1)} $</h2>
         <Button style={{ minWidth: "40%" }} onClick={() => clickFinishOrder()}>
           Order
         </Button>
