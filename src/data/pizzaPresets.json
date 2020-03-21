@@ -1,13 +1,13 @@
 [
   {
     "id": "plain-pizza",
-    "name": "Plain Pizza",
+    "name": "Custom Pizza",
     "text": "No toppings, Custom it as you like.",
     "img": "/images/PizzaPreset/preset-plain.png",
     "toppings": []
   },
   {
-    "id": "preset-id",
+    "id": "Peperoni-Heaven",
     "name": "Peperoni Heaven",
     "text": "Its peperoni pizza",
     "img": "/images/PizzaPreset/preset-plain.png",
