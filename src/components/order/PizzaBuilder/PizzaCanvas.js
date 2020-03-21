@@ -142,7 +142,7 @@ const PizaaCanvas = props => {
       updatePizza(pizzaId, pizzaName, getOrder);
     }
     props.history.push({
-      pathname: `/order/stage-3`
+      pathname: `/order/stage-1`
     });
   };
 

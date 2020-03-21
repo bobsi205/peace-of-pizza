@@ -8,6 +8,12 @@ import presetData from "../../../data/pizzaPresets.json";
 
 const PresetPage = props => {
   const { getCart } = useContext(CartContext);
+  React.useEffect(() => {
+    const Btn = document.getElementById("finishOrder");
+    if (getCart.order[0] !== undefined) {
+      Btn.disabled = false;
+    }
+  });
 
   return (
     <Container className="d-lg-flex">
@@ -41,12 +47,21 @@ const PresetPage = props => {
       </div>
 
       <ListGroup
-        className="order-1 my-4 mr-lg-4 shadow"
+        className=" order-1 my-4 mr-lg-4 shadow"
         style={{
           minWidth: "300px"
         }}
       >
         <ListGroup.Item className="bg-light">Cart</ListGroup.Item>
+        <Button
+          as={Link}
+          variant="secondary"
+          id="finishOrder"
+          disabled
+          to={"/order/stage-3"}
+        >
+          Finish Order
+        </Button>
         {getCart.order.map(pizza => (
           <ListGroup.Item key={pizza.id} className="d-flex">
             {pizza.name}
