@@ -70,7 +70,7 @@ const CartContextProvider = props => {
 
   const removePizza = id => {
     const tCart = { ...getCart };
-    tCart.order = tCart.order.filter(order => order.id === id);
+    tCart.order = tCart.order.filter(order => order.id !== id);
     setCart(tCart);
   };
 
