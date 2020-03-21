@@ -262,7 +262,7 @@ const PizaaCanvas = props => {
           <div className="d-flex pt-2">
             <Button
               size="lg"
-              variant="secondary"
+              variant="primary"
               className="flex-fill"
               onClick={() => handleFinish()}
             >
