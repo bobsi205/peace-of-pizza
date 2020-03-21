@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import Location from "../common/PlacesAPI/Location";
+import { CartContext } from "../../context/CartContext";
 
 const SignUp = props => {
   const [username, setUsername] = useState("");
@@ -14,6 +15,7 @@ const SignUp = props => {
   const [errAddress, setErrAddress] = useState("");
   const [address, setAddress] = useState("");
   const [fullAdress, setFullAddress] = useState();
+  const { login } = useContext(CartContext);
   const [DB] = useState(JSON.parse(localStorage.getItem("usersArr")));
 
   const gotoLogin = () => {
@@ -38,7 +40,7 @@ const SignUp = props => {
       if (DB.find(ele => ele.email === email) === undefined) {
         registerData();
         props.history.push({
-          pathname: `/sign-in`
+          pathname: `/`
         });
       } else setErrEmail("Email already exist");
     }
@@ -57,6 +59,7 @@ const SignUp = props => {
     } else {
       localStorage.setItem("usersArr", JSON.stringify([user]));
     }
+    login(user);
   };
 
   const passwordValidation = () => {
