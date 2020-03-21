@@ -96,7 +96,10 @@ const SignUp = props => {
   };
 
   const addressValidation = addressData => {
-    if (/israel/gim.test(addressData[0].formatted_address)) {
+    if (
+      addressData !== undefined &&
+      /israel/gim.test(addressData[0].formatted_address)
+    ) {
       if (addressData[0].address_components[0].types[0] === "street_number") {
         setErrAddress("");
         return 1;

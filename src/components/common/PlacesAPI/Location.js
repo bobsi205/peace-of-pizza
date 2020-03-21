@@ -12,6 +12,10 @@ const Location = props => {
     props.setAddress(results[0].formatted_address);
     props.setFullAddress(results);
   };
+  var size;
+  React.useEffect(() => {
+    size = document.getElementById("address").getBoundingClientRect().width;
+  });
 
   return (
     <PlacesAutocomplete
@@ -24,6 +28,7 @@ const Location = props => {
           <Form.Group>
             <Form.Label>Address</Form.Label>
             <Form.Control
+              id="address"
               type="text"
               className="flex-fill"
               required
@@ -32,7 +37,10 @@ const Location = props => {
           </Form.Group>
           <div
             className="d-flex justify-content-center flex-column"
-            style={{ position: "absolute", width: "100%" }}
+            style={{
+              position: "absolute",
+              width: size
+            }}
           >
             {suggestions.map(suggestion => {
               const style = {
