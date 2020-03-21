@@ -44,6 +44,13 @@ const Navigation = props => {
                     height="32"
                     className="ml-2 invertable"
                   />
+                  {getCart.order.length > 0 ? (
+                    <span class="badge badge-secondary">
+                      {getCart.order.length}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
                 </Nav.Link>
                 <Nav.Link as={Link} to="/sign-out" className="mx-4">
                   Sign-Out
