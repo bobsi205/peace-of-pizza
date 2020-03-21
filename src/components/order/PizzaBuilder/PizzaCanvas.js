@@ -5,13 +5,15 @@ import { withRouter } from "react-router-dom";
 import ToppingButton from "./ToppingButton";
 
 const PizaaCanvas = props => {
-  const newPizza = true; // TODO: Check if in edit mode
-  const pizzaId = ""; // TODO: Load current pizza's ID
+  const newPizza = props.location.state.newPizza;
+  const pizzaId = props.match.params.id;
   const pizzaName = "Test Pizza"; // TODO: Get pizza's name
 
   const toppingsLimit = 100;
   const [getSelectedTopping, setSelectedTopping] = useState();
-  const { toppingsData, addPizza, updatePizza } = useContext(CartContext);
+  const { toppingsData, addPizza, updatePizza, getCart } = useContext(
+    CartContext
+  );
   const [getOrder, setOrder] = useState([]);
   const [smShow, setSmShow] = useState(false);
 
@@ -21,6 +23,18 @@ const PizaaCanvas = props => {
   imgPizza.src = "/images/PizzaBuilder/pizza-base.png";
   imgPizza.onload = () => updateCanvas();
 
+  React.useEffect(() => {
+    console.log(newPizza);
+
+    if (!newPizza) {
+      getCart.order.map(pizza => {
+        if (pizza.id === pizzaId) {
+          setOrder(pizza.toppings);
+        }
+        return false;
+      });
+    }
+  }, []);
   const addTopping = e => {
     const canvas = refCanvas.current;
     const canvasBound = canvas.getBoundingClientRect();

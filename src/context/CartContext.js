@@ -45,8 +45,15 @@ const CartContextProvider = props => {
   };
 
   const updatePizza = (id, name, toppings) => {
+    console.log(id, getCart);
     const tCart = { ...getCart };
-    const pizzaIndex = tCart.indexOf(cart => cart.order.id === id);
+    let pizzaIndex;
+    tCart.order.map((pizza, index) => {
+      console.log(pizza);
+      if (pizza.id === id) pizzaIndex = index;
+    });
+    console.log(pizzaIndex);
+
     if (pizzaIndex != null) {
       if (name != null) tCart.order[pizzaIndex].name = name;
       if (toppings != null) {

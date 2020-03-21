@@ -82,7 +82,8 @@ const CheckOut = props => {
               return (
                 <Row
                   pizza={pizza}
-                  pizzaId={index}
+                  pizzaNumber={index}
+                  pizzaId={pizza.id}
                   cost={cost[index]}
                   toppingCount={toppingCount}
                 />

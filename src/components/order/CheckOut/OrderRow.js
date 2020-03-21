@@ -3,18 +3,11 @@ import { Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
 const OrderRow = props => {
-  const clickHandler = () => {
-    props.history.push({
-      pathname: "/order/stage-2",
-      state: { currentPizza: props.pizzaId }
-    });
-  };
-
   return (
     <tr>
-      <th scope="row">{props.pizzaId + 1}</th>
+      <th scope="row">{props.pizzaNumber + 1}</th>
       <td>
-        {props.toppingCount(props.pizzaId).map(topp => {
+        {props.toppingCount(props.pizzaNumber).map(topp => {
           return (
             <p style={{ fontWeight: "bold" }}>
               {topp.name} : {topp.count}
@@ -24,7 +17,17 @@ const OrderRow = props => {
       </td>
       <td style={{ fontWeight: "bold" }}>{props.cost.toFixed(2)} $</td>
       <td>
-        <Button onClick={() => clickHandler()}> EDIT</Button>
+        <Button
+          onClick={() => {
+            props.history.push({
+              pathname: "/order/stage-2/" + props.pizzaId,
+              state: { newPizza: false }
+            });
+          }}
+        >
+          {" "}
+          EDIT
+        </Button>
       </td>
     </tr>
   );

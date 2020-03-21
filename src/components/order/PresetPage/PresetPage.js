@@ -15,7 +15,10 @@ const PresetPage = props => {
         {presetData.map((preset, i) => (
           <Link
             key={i}
-            to={"/order/stage-2/" + preset.id}
+            to={{
+              pathname: "/order/stage-2/" + preset.id,
+              state: { newPizza: true }
+            }}
             className="d-block bg-dark my-4 p-4 rounded shadow"
             style={{
               height: "150px",
@@ -45,7 +48,10 @@ const PresetPage = props => {
             {pizza.name}
             <Button
               as={Link}
-              to={"/order/stage-2/" + pizza.id}
+              to={{
+                pathname: "/order/stage-2/" + pizza.id,
+                state: { newPizza: false }
+              }}
               size="sm"
               variant="secondary"
               className="ml-auto"
