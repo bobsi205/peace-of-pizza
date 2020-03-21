@@ -30,11 +30,13 @@ const PizaaCanvas = props => {
       getCart.order.map(pizza => {
         if (pizza.id === pizzaId) {
           setOrder(pizza.toppings);
+          updateCanvas();
         }
         return false;
       });
     } else {
       setOrder(props.location.state.toppings);
+      updateCanvas();
     }
     // eslint-disable-next-line
   }, []);
