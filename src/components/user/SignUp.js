@@ -23,9 +23,7 @@ const SignUp = props => {
       pathname: `/sign-in`
     });
   };
-  React.useEffect(() => {
-    console.log(DB.find(ele => ele.email === email) === undefined);
-  });
+
   const submitHandler = e => {
     e.preventDefault();
     let emailFlag = 0,
@@ -37,7 +35,10 @@ const SignUp = props => {
     emailFlag = emailValidation();
     passwordFlag = passwordValidation();
     if (emailFlag && usernameFlag && passwordFlag && addressFlag) {
-      if (DB.find(ele => ele.email === email) === undefined) {
+      if (
+        DB === undefined ||
+        DB.find(ele => ele.email === email) === undefined
+      ) {
         registerData();
         props.history.push({
           pathname: `/`
