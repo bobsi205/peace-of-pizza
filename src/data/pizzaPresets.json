@@ -10,137 +10,536 @@
     "id": "Peperoni-Heaven",
     "name": "Peperoni Heaven",
     "text": "Its peperoni pizza",
-    "img": "/images/PizzaPreset/preset-plain.png",
+    "img": "/images/PizzaPreset/pepperoni-heaven.png",
     "toppings": [
-      { "id": "pepperoni", "index": 0, "coords": { "x": 145.6875, "y": 300 } },
-      { "id": "pepperoni", "index": 2, "coords": { "x": 100.6875, "y": 273 } },
-      { "id": "pepperoni", "index": 3, "coords": { "x": 66.6875, "y": 246 } },
-      { "id": "pepperoni", "index": 3, "coords": { "x": 50.6875, "y": 207 } },
-      { "id": "pepperoni", "index": 3, "coords": { "x": 109.6875, "y": 199 } },
-      { "id": "pepperoni", "index": 3, "coords": { "x": 112.6875, "y": 222 } },
-      { "id": "pepperoni", "index": 4, "coords": { "x": 143.6875, "y": 245 } },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 155.6875, "y": 203 } },
-      { "id": "pepperoni", "index": 3, "coords": { "x": 147.6875, "y": 155 } },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 110.6875, "y": 157 } },
-      { "id": "pepperoni", "index": 4, "coords": { "x": 60.6875, "y": 155 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 82.6875, "y": 102 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 133.6875, "y": 109 } },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 140.6875, "y": 69 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 182.6875, "y": 55 } },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 250.6875, "y": 71 } },
-      { "id": "pepperoni", "index": 4, "coords": { "x": 278.6875, "y": 110 } },
-      { "id": "pepperoni", "index": 4, "coords": { "x": 287.6875, "y": 159 } },
-      { "id": "pepperoni", "index": 3, "coords": { "x": 236.6875, "y": 158 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 196.6875, "y": 148 } },
-      { "id": "pepperoni", "index": 4, "coords": { "x": 187.6875, "y": 105 } },
-      { "id": "pepperoni", "index": 4, "coords": { "x": 240.6875, "y": 111 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 290.6875, "y": 203 } },
-      { "id": "pepperoni", "index": 2, "coords": { "x": 246.6875, "y": 197 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 207.6875, "y": 197 } },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 195.6875, "y": 225 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 190.6875, "y": 267 } },
-      { "id": "pepperoni", "index": 2, "coords": { "x": 236.6875, "y": 272 } },
-      { "id": "pepperoni", "index": 4, "coords": { "x": 231.6875, "y": 228 } },
-      { "id": "pepperoni", "index": 2, "coords": { "x": 261.6875, "y": 245 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 196.6875, "y": 297 } }
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 145.6875,
+          "y": 300
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 2,
+        "coords": {
+          "x": 100.6875,
+          "y": 273
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 3,
+        "coords": {
+          "x": 66.6875,
+          "y": 246
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 3,
+        "coords": {
+          "x": 50.6875,
+          "y": 207
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 3,
+        "coords": {
+          "x": 109.6875,
+          "y": 199
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 3,
+        "coords": {
+          "x": 112.6875,
+          "y": 222
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 4,
+        "coords": {
+          "x": 143.6875,
+          "y": 245
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 155.6875,
+          "y": 203
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 3,
+        "coords": {
+          "x": 147.6875,
+          "y": 155
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 110.6875,
+          "y": 157
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 4,
+        "coords": {
+          "x": 60.6875,
+          "y": 155
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 82.6875,
+          "y": 102
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 133.6875,
+          "y": 109
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 140.6875,
+          "y": 69
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 182.6875,
+          "y": 55
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 250.6875,
+          "y": 71
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 4,
+        "coords": {
+          "x": 278.6875,
+          "y": 110
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 4,
+        "coords": {
+          "x": 287.6875,
+          "y": 159
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 3,
+        "coords": {
+          "x": 236.6875,
+          "y": 158
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 196.6875,
+          "y": 148
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 4,
+        "coords": {
+          "x": 187.6875,
+          "y": 105
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 4,
+        "coords": {
+          "x": 240.6875,
+          "y": 111
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 290.6875,
+          "y": 203
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 2,
+        "coords": {
+          "x": 246.6875,
+          "y": 197
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 207.6875,
+          "y": 197
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 195.6875,
+          "y": 225
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 190.6875,
+          "y": 267
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 2,
+        "coords": {
+          "x": 236.6875,
+          "y": 272
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 4,
+        "coords": {
+          "x": 231.6875,
+          "y": 228
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 2,
+        "coords": {
+          "x": 261.6875,
+          "y": 245
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 196.6875,
+          "y": 297
+        }
+      }
     ]
   },
   {
     "id": "the-d",
     "name": "The D",
     "text": "( ͡° ͜ʖ ͡°)",
-    "img": "/images/PizzaPreset/preset-plain.png",
+    "img": "/images/PizzaPreset/theD.png",
     "toppings": [
       {
         "id": "babyMozzarella",
         "index": 4,
-        "coords": { "x": 115.6875, "y": 279 }
+        "coords": {
+          "x": 115.6875,
+          "y": 279
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 2,
-        "coords": { "x": 112.6875, "y": 243 }
+        "coords": {
+          "x": 112.6875,
+          "y": 243
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 1,
-        "coords": { "x": 113.6875, "y": 208 }
+        "coords": {
+          "x": 113.6875,
+          "y": 208
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 2,
-        "coords": { "x": 110.6875, "y": 166 }
+        "coords": {
+          "x": 110.6875,
+          "y": 166
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 4,
-        "coords": { "x": 104.6875, "y": 122 }
+        "coords": {
+          "x": 104.6875,
+          "y": 122
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 1,
-        "coords": { "x": 105.6875, "y": 82 }
+        "coords": {
+          "x": 105.6875,
+          "y": 82
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 2,
-        "coords": { "x": 156.6875, "y": 92 }
+        "coords": {
+          "x": 156.6875,
+          "y": 92
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 2,
-        "coords": { "x": 198.6875, "y": 102 }
+        "coords": {
+          "x": 198.6875,
+          "y": 102
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 4,
-        "coords": { "x": 220.6875, "y": 126 }
+        "coords": {
+          "x": 220.6875,
+          "y": 126
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 0,
-        "coords": { "x": 243.6875, "y": 155 }
+        "coords": {
+          "x": 243.6875,
+          "y": 155
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 4,
-        "coords": { "x": 249.6875, "y": 199 }
+        "coords": {
+          "x": 249.6875,
+          "y": 199
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 4,
-        "coords": { "x": 231.6875, "y": 248 }
+        "coords": {
+          "x": 231.6875,
+          "y": 248
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 4,
-        "coords": { "x": 188.6875, "y": 278 }
+        "coords": {
+          "x": 188.6875,
+          "y": 278
+        }
       },
       {
         "id": "babyMozzarella",
         "index": 1,
-        "coords": { "x": 147.6875, "y": 286 }
+        "coords": {
+          "x": 147.6875,
+          "y": 286
+        }
       },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 141.6875, "y": 252 } },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 140.6875, "y": 216 } },
-      { "id": "pepperoni", "index": 3, "coords": { "x": 139.6875, "y": 152 } },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 199.6875, "y": 163 } },
-      { "id": "pepperoni", "index": 1, "coords": { "x": 203.6875, "y": 213 } },
-      { "id": "pepperoni", "index": 0, "coords": { "x": 169.6875, "y": 192 } },
-      { "id": "pepperoni", "index": 2, "coords": { "x": 167.6875, "y": 241 } },
-      { "id": "pepperoni", "index": 3, "coords": { "x": 177.6875, "y": 146 } },
-      { "id": "pepperoni", "index": 4, "coords": { "x": 133.6875, "y": 170 } },
-      { "id": "tomato", "index": 1, "coords": { "x": 68.6875, "y": 242 } },
-      { "id": "tomato", "index": 2, "coords": { "x": 62.6875, "y": 193 } },
-      { "id": "tomato", "index": 0, "coords": { "x": 61.6875, "y": 138 } },
-      { "id": "tomato", "index": 0, "coords": { "x": 137.6875, "y": 55 } },
-      { "id": "tomato", "index": 2, "coords": { "x": 198.6875, "y": 50 } },
-      { "id": "tomato", "index": 3, "coords": { "x": 252.6875, "y": 85 } },
-      { "id": "tomato", "index": 0, "coords": { "x": 277.6875, "y": 117 } },
-      { "id": "tomato", "index": 3, "coords": { "x": 294.6875, "y": 167 } },
-      { "id": "tomato", "index": 1, "coords": { "x": 288.6875, "y": 227 } },
-      { "id": "tomato", "index": 4, "coords": { "x": 258.6875, "y": 278 } },
-      { "id": "tomato", "index": 2, "coords": { "x": 71.6875, "y": 84 } }
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 141.6875,
+          "y": 252
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 140.6875,
+          "y": 216
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 3,
+        "coords": {
+          "x": 139.6875,
+          "y": 152
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 199.6875,
+          "y": 163
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 1,
+        "coords": {
+          "x": 203.6875,
+          "y": 213
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 0,
+        "coords": {
+          "x": 169.6875,
+          "y": 192
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 2,
+        "coords": {
+          "x": 167.6875,
+          "y": 241
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 3,
+        "coords": {
+          "x": 177.6875,
+          "y": 146
+        }
+      },
+      {
+        "id": "pepperoni",
+        "index": 4,
+        "coords": {
+          "x": 133.6875,
+          "y": 170
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 1,
+        "coords": {
+          "x": 68.6875,
+          "y": 242
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 2,
+        "coords": {
+          "x": 62.6875,
+          "y": 193
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 0,
+        "coords": {
+          "x": 61.6875,
+          "y": 138
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 0,
+        "coords": {
+          "x": 137.6875,
+          "y": 55
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 2,
+        "coords": {
+          "x": 198.6875,
+          "y": 50
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 3,
+        "coords": {
+          "x": 252.6875,
+          "y": 85
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 0,
+        "coords": {
+          "x": 277.6875,
+          "y": 117
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 3,
+        "coords": {
+          "x": 294.6875,
+          "y": 167
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 1,
+        "coords": {
+          "x": 288.6875,
+          "y": 227
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 4,
+        "coords": {
+          "x": 258.6875,
+          "y": 278
+        }
+      },
+      {
+        "id": "tomato",
+        "index": 2,
+        "coords": {
+          "x": 71.6875,
+          "y": 84
+        }
+      }
     ]
   }
 ]
