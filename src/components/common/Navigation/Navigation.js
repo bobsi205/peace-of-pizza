@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar, Container, Badge } from "react-bootstrap";
 
 import imgCart from "./images/icon-cart.svg";
 import { CartContext } from "../../../context/CartContext";
@@ -45,9 +45,9 @@ const Navigation = props => {
                     className="ml-2 invertable"
                   />
                   {getCart.order.length > 0 ? (
-                    <span class="badge badge-secondary">
+                    <Badge class="badge badge-secondary">
                       {getCart.order.length}
-                    </span>
+                    </Badge>
                   ) : (
                     <></>
                   )}
